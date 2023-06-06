@@ -1,2 +1,2 @@
 # dragon breath
-space for learning game engine architecture
+space for learning soft real-time interactive agent-based computer simulation architectures
