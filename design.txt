@@ -1,0 +1,23 @@
+This spaces lays out the design choices of the dragon breath project.
+
+*** Status Checks ***
+
+Void return types will be "null and void" as much as possible for the sake of 
+code clarity and debugging.  Hence, void will be replaced with enum classes that
+describe the possible errors/states for a given function, and will be returned
+when said error is triggered.  #defines and consts can only be slightly 
+descriptive to the programmer, whereas enums are precompiled and not shown as 
+useless numbers when presented to the console during testing.  This is why enums
+will be common for return types.  Also, it's possinble that the code would be 
+capable of dealing with the errors on its own with little intervention. However,
+it should be noted that void returns may still be used, but will populate less 
+of the code.  Enums will also have an "e_" in front of their names for further 
+clarity, just like how "m_" used in front of member identifiers.
+
+*** Windows and Graphics ***
+
+GLFW will be equipped for windows and graphics considering the involvement with 
+the OS documentation and API that would be required for accomplishing such a 
+task from scratch; perhaps, this will remain as a potential, future direction 
+for this project or a separate one. I have considered diving into rasterization
+techniques.
