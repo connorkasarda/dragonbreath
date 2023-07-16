@@ -1,6 +1,7 @@
 This is a codespace I created for learning soft real-time interactive
 agent-based computer simulations.  Most of the work will be completed from
-scratch, with the exception of a few dependencies.  For example, I will use 
+scratch, with the exception of a few dependencies.  For example, once I  reach 
+the point of implementing the graphics after the skeleton is built, I will use 
 opengl in the form of glfw for window and graphics creation.  While I do want
 to learn how to render graphics from the bottom up, this work is extensive and 
 involves countless quests through the labrynth of OS documentation.  Due to this
