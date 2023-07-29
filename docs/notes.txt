@@ -1,0 +1,7 @@
+Entity Component System (ECS)
+
+    Entity -- general purpose object consisting of a unique id
+
+    Component -- ties an aspect to a particular Entity
+
+    System -- acts on any Entity with a target Component
