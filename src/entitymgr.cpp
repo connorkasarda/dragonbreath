@@ -2,7 +2,7 @@
 
 DragonBreath::EntityManager::EntityManager()
 {
-    for (Entity_t e = 0; e < MAX_ENTITIES; ++e)
+    for (EntityID e = 0; e < MAX_ENTITIES; ++e)
     {
         m_EntityPool.push(e);
     }

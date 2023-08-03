@@ -7,13 +7,14 @@
 
 namespace DragonBreath
 {
-    using Entity_t = std::uint16_t;
-    const Entity_t MAX_ENTITIES = 2048;
+    // Datatype alias for entities, where an entity is an ID number
+    using EntityID = std::uint16_t;
+    const EntityID MAX_ENTITIES = 2048;
 
     class EntityManager
     {
         private:
-            std::queue<Entity_t> m_EntityPool{};
+            std::queue<EntityID> m_EntityPool{};
             std::uint16_t m_NumEntityAlive{};
         public:
             EntityManager();
