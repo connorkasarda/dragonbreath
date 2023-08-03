@@ -1,24 +1,22 @@
 #ifndef ENTITY_MANAGER_H
 #define ENTITY_MANAGER_H
 
-#include <cstdint>
+#include "entity.h"
 #include <cassert>
 #include <queue>
 
 namespace DragonBreath
 {
-    // Datatype alias for entities, where an entity is an ID number
-    using EntityID = std::uint16_t;
-    const EntityID MAX_ENTITIES = 2048;
-
     class EntityManager
     {
         private:
-            std::queue<EntityID> m_EntityPool{};
-            std::uint16_t m_NumEntityAlive{};
+            std::queue<Entity> m_entity_pool{};
+            std::uint16_t m_num_entity_alive{};
         public:
             EntityManager();
             std::uint16_t getNumEntityAlive();
+            Entity createEntity();
+            void destroyEntity(Entity entity);
     };
 }
 
