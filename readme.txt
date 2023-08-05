@@ -1,6 +1,6 @@
 DRAGON BREATH
 
-This is a codespace I created for buidling a soft real-time agent-based
+This is a codespace I created for building a soft real-time agent-based
 simulation engine. The engine will depend on an Entity Component System (ECS) 
 that is built from scratch.
 
