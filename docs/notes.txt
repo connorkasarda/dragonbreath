@@ -10,6 +10,8 @@ Design Choices
 
     May need to review differences between asserts, exceptions, and remaining
     methods for error checking and handling...using asserts at the moment, yet
-    this is only best for development, not production
+    this is only best for development, not production.
 
     Should "using" keyword be replaced with "typedef" keyword?
+
+    Going to keep type aliases for separate concepts in their own header files.
