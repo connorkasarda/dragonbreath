@@ -1,9 +1,14 @@
 #ifndef ENTITY_MANAGER_H
 #define ENTITY_MANAGER_H
 
+// File: entity_manager.h
+// Purpose: entity manager class declarations
+// Author: Connor Logan Kasarda
+// Date: 2023-8-6
+
 #include <cassert>
 #include <queue>
-#include "Entity.h"
+#include "entity.h"
 
 namespace DragonBreath
 {
@@ -11,10 +16,10 @@ namespace DragonBreath
     {
         private:
             std::queue<Entity> m_entity_pool{};
-            std::uint16_t m_num_entities_alive{};
+            Entity m_num_entities_alive{};
         public:
             EntityManager();
-            std::uint16_t getNumEntitiesAlive();
+            Entity getNumEntitiesAlive();
             Entity createEntity();
             void destroyEntity(Entity entity);
     };

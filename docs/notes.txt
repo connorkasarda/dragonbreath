@@ -5,3 +5,11 @@ Entity Component System (ECS)
     Component -- ties an aspect to a particular Entity
 
     System -- acts on any Entity with a target Component
+
+Design Choices
+
+    May need to review differences between asserts, exceptions, and remaining
+    methods for error checking and handling...using asserts at the moment, yet
+    this is only best for development, not production
+
+    Should "using" keyword be replaced with "typedef" keyword?
