@@ -1,7 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-// File: types.h
+// File: entity.h
 // Purpose: entity type aliases and constants
 // Author: Connor Logan Kasarda
 // Date: 2023-08-06
