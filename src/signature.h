@@ -11,6 +11,7 @@
 
 namespace DragonBreath
 {
+    // Keeps track of entity's components
     using Signature = std::bitset<MAX_COMPONENTS>;
 }
 

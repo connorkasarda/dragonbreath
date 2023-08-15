@@ -10,8 +10,8 @@
 
 namespace DragonBreath
 {
-    using Component = std::uint8_t;
-    const Component MAX_COMPONENTS = 128;
+    using Component = std::int8_t;
+    const Component MAX_COMPONENTS = 64;
 }
 
 #endif

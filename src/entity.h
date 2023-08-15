@@ -11,7 +11,7 @@
 namespace DragonBreath
 {
     // Entities are only IDs
-    using Entity = std::uint16_t;
+    using Entity = std::int16_t;
     const Entity MAX_ENTITIES = 2048;
 }
 
