@@ -10,9 +10,8 @@
 
 namespace DragonBreath
 {
-    // TODO: replace using with typedef?
     using Component = std::uint8_t;
-    const Component MAX_COMPONENTS = 32;
+    const Component MAX_COMPONENTS = 128;
 }
 
 #endif

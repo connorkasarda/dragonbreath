@@ -15,3 +15,7 @@ Design Choices
     Should "using" keyword be replaced with "typedef" keyword?
 
     Going to keep type aliases for separate concepts in their own header files.
+
+Concerns
+
+    Should I refrain from using unsigned integer values?
