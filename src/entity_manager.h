@@ -6,7 +6,6 @@
 // Author: Connor Logan Kasarda
 // Date: 2023-8-6
 
-#include <cassert>
 #include <queue>
 #include <array>
 #include "entity.h"
