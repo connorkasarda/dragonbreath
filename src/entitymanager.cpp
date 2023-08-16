@@ -1,4 +1,4 @@
-// File: entity_manager.cpp
+// File: entitymanager.cpp
 // Purpose: entity manager class implementations
 // Author: Connor Logan Kasarda
 // Date: 2023-08-06

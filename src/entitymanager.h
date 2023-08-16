@@ -1,7 +1,7 @@
 #ifndef ENTITY_MANAGER_H
 #define ENTITY_MANAGER_H
 
-// File: entity_manager.h
+// File: entitymanager.h
 // Purpose: entity manager class declarations
 // Author: Connor Logan Kasarda
 // Date: 2023-8-6
