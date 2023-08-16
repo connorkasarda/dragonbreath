@@ -17,7 +17,7 @@ namespace dragonbreath
     {
         private:
             std::queue<Entity> entityPool{};
-            Entity numEntitiesAlive{};
+            std::int16_t numEntitiesAlive{};
             std::array<Signature, MAX_COMPONENTS> signatures;
         public:
             EntityManager();
