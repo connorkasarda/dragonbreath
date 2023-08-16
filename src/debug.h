@@ -1,6 +1,11 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+// File: debug.h
+// Purpose: self-defined asserts for development debugging purposes
+// Author: Connor Logan Kasarda
+// Date: 2023-08-16
+
 #if defined(DEVELOPMENT)
     #define DRAGON_ASSERT(test, msg, ...) \
         do { \
