@@ -3,7 +3,7 @@
 // Author: Connor Logan Kasarda
 // Date: 2023-08-06
 
-#include "entity_manager.h"
+#include "entitymanager.h"
 
 dragonbreath::EntityManager::EntityManager()
 {
