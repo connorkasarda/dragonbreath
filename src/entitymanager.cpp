@@ -37,27 +37,20 @@ namespace dragonbreath
         return entity;
     }
 
-    void EntityManager::destroyEntity(
-        Entity entity
-    )
+    void EntityManager::destroyEntity(Entity entity)
     {
         // Add dragon assert HERE if debugging in development
         this->entityPool.push(entity);
         --this->numEntitiesAlive;
     }
 
-    void EntityManager::setSignature(
-        Entity entity,
-        Signature signature
-    )
+    void EntityManager::setSignature(Entity entity, Signature signature)
     {
         // Add dragon assert HERE if debugging in development
         this->signatures[entity] = signature;
     }
 
-    Signature EntityManager::getSignature(
-        Entity entity
-    )
+    Signature EntityManager::getSignature(Entity entity)
     {
         // Add dragon assert HERE if debugging in development
         return this->signatures[entity];
