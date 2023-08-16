@@ -12,7 +12,7 @@ namespace dragonbreath
         for (Entity e = 0; e < MAX_ENTITIES; ++e)
         {
             this->entityPool.push(e);
-        }
+        } 
     }
 
     EntityManager::~EntityManager()
