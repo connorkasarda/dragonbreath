@@ -21,7 +21,7 @@ dragonbreath::EntityManager::~EntityManager()
     }
 }
 
-dragonbreath::Entity dragonbreath::EntityManager::getNumEntitiesAlive()
+std::int16_t dragonbreath::EntityManager::getNumEntitiesAlive()
 {
     return this->numEntitiesAlive;
 }

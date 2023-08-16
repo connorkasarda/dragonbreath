@@ -22,7 +22,7 @@ namespace dragonbreath
         public:
             EntityManager();
             ~EntityManager();
-            Entity getNumEntitiesAlive();
+            std::int16_t getNumEntitiesAlive();
             Entity createEntity();
             void destroyEntity(Entity entity);
             void setSignature(Entity entity, Signature signature);
