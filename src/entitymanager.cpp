@@ -5,58 +5,61 @@
 
 #include "entitymanager.h"
 
-dragonbreath::EntityManager::EntityManager()
+namespace dragonbreath
 {
-    for (Entity e = 0; e < MAX_ENTITIES; ++e)
+    EntityManager::EntityManager()
     {
-        this->entityPool.push(e);
+        for (Entity e = 0; e < MAX_ENTITIES; ++e)
+        {
+            this->entityPool.push(e);
+        }
     }
-}
 
-dragonbreath::EntityManager::~EntityManager()
-{
-    while (!entityPool.empty())
+    EntityManager::~EntityManager()
     {
+        while (!entityPool.empty())
+        {
+            this->entityPool.pop();
+        }
+    }
+
+    std::int16_t EntityManager::getNumEntitiesAlive()
+    {
+        return this->numEntitiesAlive;
+    }
+
+    Entity EntityManager::createEntity()
+    {
+        // Add dragon assert HERE if debugging in development
+        Entity entity = this->entityPool.front();
         this->entityPool.pop();
+        ++this->numEntitiesAlive;
+        return entity;
     }
-}
 
-std::int16_t dragonbreath::EntityManager::getNumEntitiesAlive()
-{
-    return this->numEntitiesAlive;
-}
+    void EntityManager::destroyEntity(
+        Entity entity
+    )
+    {
+        // Add dragon assert HERE if debugging in development
+        this->entityPool.push(entity);
+        --this->numEntitiesAlive;
+    }
 
-dragonbreath::Entity dragonbreath::EntityManager::createEntity()
-{
-    // Add dragon assert HERE if debugging in development
-    Entity entity = this->entityPool.front();
-    this->entityPool.pop();
-    ++this->numEntitiesAlive;
-    return entity;
-}
+    void EntityManager::setSignature(
+        Entity entity,
+        Signature signature
+    )
+    {
+        // Add dragon assert HERE if debugging in development
+        this->signatures[entity] = signature;
+    }
 
-void dragonbreath::EntityManager::destroyEntity(
-    dragonbreath::Entity entity
-)
-{
-    // Add dragon assert HERE if debugging in development
-    this->entityPool.push(entity);
-    --this->numEntitiesAlive;
-}
-
-void dragonbreath::EntityManager::setSignature(
-    dragonbreath::Entity entity,
-    dragonbreath::Signature signature
-)
-{
-    // Add dragon assert HERE if debugging in development
-    this->signatures[entity] = signature;
-}
-
-dragonbreath::Signature dragonbreath::EntityManager::getSignature(
-    dragonbreath::Entity entity
-)
-{
-    // Add dragon assert HERE if debugging in development
-    return this->signatures[entity];
+    Signature EntityManager::getSignature(
+        Entity entity
+    )
+    {
+        // Add dragon assert HERE if debugging in development
+        return this->signatures[entity];
+    }
 }
