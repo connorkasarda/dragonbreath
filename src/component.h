@@ -8,10 +8,10 @@
 
 #include <cstdint>
 
-namespace DragonBreath
+namespace dragonbreath
 {
     using Component = std::int8_t;
-    const Component MAX_COMPONENTS = 64;
+    const Component MAX_COMPONENTS = 32;
 }
 
 #endif

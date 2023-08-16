@@ -9,7 +9,7 @@
 #include <bitset>
 #include "component.h"
 
-namespace DragonBreath
+namespace dragonbreath
 {
     // Keeps track of entity's components
     using Signature = std::bitset<MAX_COMPONENTS>;

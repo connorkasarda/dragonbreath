@@ -8,20 +8,26 @@
 
 #include <cassert>
 #include <queue>
+#include <array>
 #include "entity.h"
+#include "signature.h"
 
-namespace DragonBreath
+namespace dragonbreath
 {
     class EntityManager
     {
         private:
-            std::queue<Entity> m_entity_pool{};
-            Entity m_num_entities_alive{};
+            std::queue<Entity> entityPool{};
+            Entity numEntitiesAlive{};
+            std::array<Signature, MAX_COMPONENTS> signatures;
         public:
             EntityManager();
+            ~EntityManager();
             Entity getNumEntitiesAlive();
             Entity createEntity();
             void destroyEntity(Entity entity);
+            void setSignature(Entity entity, Signature signature);
+            Signature getSignature(Entity entity);
     };
 }
 

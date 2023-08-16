@@ -8,7 +8,7 @@
 
 #include <cstdint>
 
-namespace DragonBreath
+namespace dragonbreath
 {
     // Entities are only IDs
     using Entity = std::int16_t;
