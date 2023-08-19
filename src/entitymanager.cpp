@@ -30,7 +30,10 @@ namespace dragonbreath
 
     Entity EntityManager::createEntity()
     {
-        // Add dragon assert HERE if debugging in development
+        DRAGON_ASSERT(
+            this->numEntitiesAlive < MAX_ENTITIES,
+            "maximum number of alive entities reached"
+        );
         Entity entity = this->entityPool.front();
         this->entityPool.pop();
         ++this->numEntitiesAlive;

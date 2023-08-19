@@ -4,6 +4,7 @@
 // Date: 2023-08-06
 
 #include <iostream>
+#include "entitymanager.h"
 
 int main(int argc, char** argv)
 {
