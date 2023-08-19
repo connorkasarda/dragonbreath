@@ -1,3 +1,10 @@
+# File: Makefile
+# Purpose: compiles codeinto dragonbreath executable
+# Author: Connor Logan Kasarda
+# Date: 2023-08-06
+
+# For development debugging purposes, add "-DDEVELOPMENT" flag in CFLAGS
+
 CC := g++ # name of compiler
 CFLAGS := -Wall -Werror -std=c++17 # compiler's enabled flags
 TARGET := dragonbreath # target's name

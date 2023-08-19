@@ -10,6 +10,7 @@
 #include <array>
 #include "entity.h"
 #include "signature.h"
+#include "debug.h"
 
 namespace dragonbreath
 {
