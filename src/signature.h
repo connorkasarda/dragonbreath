@@ -11,7 +11,12 @@
 
 namespace dragonbreath
 {
-    // Keeps track of entity's components
+    // Keeps track of which components an entity has
+    // Example:
+        // Transform = bit 0
+        // RigidBody = bit 1
+        // Gravity = bit 2
+        // and so on ...
     using Signature = std::bitset<MAX_COMPONENTS>;
 }
 
