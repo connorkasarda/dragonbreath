@@ -3,7 +3,7 @@
 // Author: Connor Logan Kasarda
 // Date: 2023-08-06
 
-#include "entitymanager.h"
+#include "entity_manager.h"
 
 namespace dragonbreath
 {
@@ -30,7 +30,8 @@ namespace dragonbreath
 
     Entity EntityManager::createEntity()
     {
-        DRAGON_ASSERT(
+        DRAGON_ASSERT
+        (
             this->numEntitiesAlive < MAX_ENTITIES,
             "maximum number of alive entities reached"
         );
@@ -42,20 +43,18 @@ namespace dragonbreath
 
     void EntityManager::destroyEntity(Entity entity)
     {
-        // Add dragon assert HERE if debugging in development
+        this->signatures[entity].reset();
         this->entityPool.push(entity);
         --this->numEntitiesAlive;
     }
 
     void EntityManager::setSignature(Entity entity, Signature signature)
     {
-        // Add dragon assert HERE if debugging in development
         this->signatures[entity] = signature;
     }
 
     Signature EntityManager::getSignature(Entity entity)
     {
-        // Add dragon assert HERE if debugging in development
         return this->signatures[entity];
     }
 }
