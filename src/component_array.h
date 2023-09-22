@@ -25,7 +25,11 @@ namespace dragonbreath
             std::unordered_map<Entity, std::size_t> entityToIndexMap;
             std::unordered_map<std::size_t, Entity> indexToEntityMap;
             std::size_t size;
-        // ADD FUNCTION NAMES HERE
+        public:
+            void InsertData(Entity entity, T component);
+            void RemoveData(Entity entity);
+            T& GetData(Entity entity);
+            void EntityDestroyed(Entity entity) override;
     };
 }
 
