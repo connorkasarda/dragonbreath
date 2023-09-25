@@ -14,8 +14,9 @@ namespace dragonbreath
 {
     class IComponentArray
     {
-        virtual ~IComponentArray() = default;
-        virtual void EntityDestroyed(Entity entity) = 0;
+        public:
+            virtual ~IComponentArray() = default;
+            virtual void EntityDestroyed(Entity entity) = 0;
     };
     template<typename T>
     class ComponentArray : public IComponentArray
