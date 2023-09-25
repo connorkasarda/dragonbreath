@@ -12,7 +12,7 @@ namespace dragonbreath
         for (auto const& pair : this->componentArrays)
         {
             auto const& component = pair.second;
-            component->EntityDestroyed(entity);
+            component->DestroyEntity(entity);
         }
     }
 }
