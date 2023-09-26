@@ -16,7 +16,7 @@ namespace dragonbreath
     {
         public:
             virtual ~IComponentArray() = default;
-            virtual void DestroyEntity(Entity entity) = 0;
+            virtual void EntityDestroyed(Entity entity) = 0;
     };
     template<typename T>
     class ComponentArray : public IComponentArray
@@ -30,7 +30,7 @@ namespace dragonbreath
             void InsertData(Entity entity, T component);
             void RemoveData(Entity entity);
             T& GetData(Entity entity);
-            void DestroyEntity(Entity entity) override;
+            void EntityDestroyed(Entity entity) override;
     };
 }
 
