@@ -23,12 +23,12 @@ namespace dragonbreath
         }
     }
 
-    std::int16_t EntityManager::getNumEntitiesAlive()
+    std::int16_t EntityManager::GetNumEntitiesAlive()
     {
         return this->numEntitiesAlive;
     }
 
-    Entity EntityManager::createEntity()
+    Entity EntityManager::CreateEntity()
     {
         DRAGON_ASSERT
         (
@@ -41,19 +41,19 @@ namespace dragonbreath
         return entity;
     }
 
-    void EntityManager::destroyEntity(Entity entity)
+    void EntityManager::DestroyEntity(Entity entity)
     {
         this->signatures[entity].reset();
         this->entityPool.push(entity);
         --this->numEntitiesAlive;
     }
 
-    void EntityManager::setSignature(Entity entity, Signature signature)
+    void EntityManager::SetSignature(Entity entity, Signature signature)
     {
         this->signatures[entity] = signature;
     }
 
-    Signature EntityManager::getSignature(Entity entity)
+    Signature EntityManager::GetSignature(Entity entity)
     {
         return this->signatures[entity];
     }
