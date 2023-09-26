@@ -30,9 +30,9 @@ namespace dragonbreath
         void AddComponent(Entity entity, T component)
         {
             this->componentManager->AddComponent<T>(entity, component);
-            auto signature = this->entityManager->getSignature(entity);
+            auto signature = this->entityManager->GetSignature(entity);
             signature.set(this->componentManager->GetComponentType<T>(), true);
-            this->entityManager->setSignature(entity, signature);
+            this->entityManager->SetSignature(entity, signature);
             this->systemManager->EntitySignatureChanged(entity, signature);
         }
         template<typename T>
@@ -41,7 +41,7 @@ namespace dragonbreath
             this->componentManager->RemoveComponent<T>(entity);
             auto signature = this->entityManager->GetSignature(entity);
             signature.set(this->componentManager->GetComponentType<T>(), false);
-            this->entityManager->setSignature(entity, signature);
+            this->entityManager->SetSignature(entity, signature);
             this->systemManager->EntitySignatureChanged(entity, signature);
         }
         template<typename T>
