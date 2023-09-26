@@ -16,18 +16,18 @@ namespace dragonbreath
 {
     class EntityManager
     {
-        private:
-            std::queue<Entity> entityPool{};
-            std::int16_t numEntitiesAlive{};
-            std::array<Signature, MAX_COMPONENTS> signatures{};
-        public:
-            EntityManager();
-            ~EntityManager();
-            std::int16_t getNumEntitiesAlive();
-            Entity createEntity();
-            void destroyEntity(Entity entity);
-            void setSignature(Entity entity, Signature signature);
-            Signature getSignature(Entity entity);
+    public:
+        EntityManager();
+        ~EntityManager();
+        std::int16_t getNumEntitiesAlive();
+        Entity createEntity();
+        void destroyEntity(Entity entity);
+        void setSignature(Entity entity, Signature signature);
+        Signature getSignature(Entity entity);
+    private:
+        std::queue<Entity> entityPool{};
+        std::int16_t numEntitiesAlive{};
+        std::array<Signature, MAX_COMPONENTS> signatures{};
     };
 }
 
