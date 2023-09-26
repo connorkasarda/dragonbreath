@@ -36,7 +36,7 @@ namespace dragonbreath
         return this->componentArray[this->entityToIndexMap[entity]];
     }
     template <typename T>
-    void ComponentArray<T>::DestroyEntity(Entity entity)
+    void ComponentArray<T>::EntityDestroyed(Entity entity)
     {
         if (this->entityToIndexMap.find(entity) != this->entityToIndexMap.end())
         {

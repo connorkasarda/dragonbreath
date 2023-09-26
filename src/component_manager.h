@@ -69,7 +69,7 @@ namespace dragonbreath
             {
                 return GetComponentArray<T>()->GetData(entity);
             }
-            void DestroyEntity(Entity entity);
+            void EntityDestroyed(Entity entity);
     };
 }
 
