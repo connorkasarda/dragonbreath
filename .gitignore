@@ -2,3 +2,5 @@
 **/build/
 *.d
 *.o
+token.txt
+token.txt.gpg
