@@ -14,23 +14,23 @@ namespace dragonbreath
 {
     class IComponentArray
     {
-        public:
-            virtual ~IComponentArray() = default;
-            virtual void EntityDestroyed(Entity entity) = 0;
+    public:
+        virtual ~IComponentArray() = default;
+        virtual void EntityDestroyed(Entity entity) = 0;
     };
     template<typename T>
     class ComponentArray : public IComponentArray
     {
-        private:
-            std::array<T, MAX_ENTITIES> componentArray;
-            std::unordered_map<Entity, std::size_t> entityToIndexMap;
-            std::unordered_map<std::size_t, Entity> indexToEntityMap;
-            std::size_t size;
-        public:
-            void InsertData(Entity entity, T component);
-            void RemoveData(Entity entity);
-            T& GetData(Entity entity);
-            void EntityDestroyed(Entity entity) override;
+    public:
+        void InsertData(Entity entity, T component);
+        void RemoveData(Entity entity);
+        T& GetData(Entity entity);
+        void EntityDestroyed(Entity entity) override;
+    private:
+        std::array<T, MAX_ENTITIES> componentArray;
+        std::unordered_map<Entity, std::size_t> entityToIndexMap;
+        std::unordered_map<std::size_t, Entity> indexToEntityMap;
+        std::size_t size;
     };
 }
 

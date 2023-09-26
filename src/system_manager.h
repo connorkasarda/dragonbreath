@@ -32,7 +32,6 @@ namespace dragonbreath
         }
         void EntityDestroyed(Entity entity);
         void EntitySignatureChanged(Entity entity, Signature entitySignature);
-        
     private:
         std::unordered_map<const char*, Signature> signatures{};
         std::unordered_map<const char*, std::shared_ptr<System>> systems{};

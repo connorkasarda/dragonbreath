@@ -13,8 +13,8 @@ namespace dragonbreath
 {
     class System
     {
-        public:
-            std::set<Entity> entities;
+    public:
+        std::set<Entity> entities;
     };
 }
 
