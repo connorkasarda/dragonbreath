@@ -16,5 +16,5 @@ these for accessing the OpenAI API.
 
 -- Implementations --
 
-[ ] Entity Component System
+[x] Entity Component System
 [ ] Generative AI Agents

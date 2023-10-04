@@ -1,7 +1,7 @@
 #ifndef COMPONENT_ARRAY_H
 #define COMPONENT_ARRAY_H
 
-// File: componentarray.h
+// File: component_array.h
 // Purpose: packed array of components
 // Author: Connor Logan Kasarda
 // Date: 2023-09-17
