@@ -8,7 +8,7 @@
 
 #include <unordered_map>
 #include <memory>
-#include "component.h"
+#include "component_type.h"
 #include "component_array.h"
 
 namespace dragonbreath
@@ -31,7 +31,7 @@ namespace dragonbreath
             ++nextComponentType;
         }
         template<typename T>
-        Component GetComponentType()
+        ComponentType GetComponentType()
         {
             const char* typeName = typeid(T).name();
             return this->componentTypes[typeName];
@@ -53,14 +53,14 @@ namespace dragonbreath
         }
         void EntityDestroyed(Entity entity);
     private:
-        std::unordered_map<const char*, Component> componentTypes{};
+        std::unordered_map<const char*, ComponentType> componentTypes{};
         std::unordered_map
         <
             const char*,
             std::shared_ptr<IComponentArray>
-        >
+        > 
         componentArrays{};
-        Component nextComponentType{};
+        ComponentType nextComponentType{};
         template<typename T>
         std::shared_ptr<ComponentArray<T>> GetComponentArray()
         {

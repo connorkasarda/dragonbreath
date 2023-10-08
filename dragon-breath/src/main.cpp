@@ -4,9 +4,16 @@
 // Date: 2023-08-06
 
 #include <iostream>
+#include "coordinator.h"
+#include "components.h"
+
+dragonbreath::Coordinator coordinator;
 
 int main(int argc, char** argv)
 {
-    std::cout << "Hello, World!" << std::endl;
+    coordinator.Init();
+    std::cout << "...coordinator initialized" << std::endl;
+    coordinator.RegisterComponent<dragonbreath::Transform>();
+    std::cout << "...transform component registered" << std::endl;
     return 0;
 }
