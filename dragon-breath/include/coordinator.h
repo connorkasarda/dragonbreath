@@ -8,7 +8,7 @@
 
 #include <memory>
 #include "entity.h"
-#include "component.h"
+#include "component_type.h"
 #include "component_manager.h"
 #include "entity_manager.h"
 #include "system_manager.h"
@@ -50,7 +50,7 @@ namespace dragonbreath
             return this->componentManager->GetComponent<T>(entity);
         }
         template<typename T>
-        Component GetComponentType()
+        ComponentType GetComponentType()
         {
             return this->componentManager->GetComponentType<T>();
         }

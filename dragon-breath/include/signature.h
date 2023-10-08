@@ -7,7 +7,7 @@
 // Date: 2023-08-15
 
 #include <bitset>
-#include "component.h"
+#include "component_type.h"
 
 namespace dragonbreath
 {
