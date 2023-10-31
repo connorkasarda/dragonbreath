@@ -14,7 +14,13 @@ Large Langauge Models (LLM) used for ChatGPT will be used from OpenAI. However,
 there are wrapper APIs available for C++, C#, etc. I might end up using one of 
 these for accessing the OpenAI API.
 
+Found out about CAMEL-AI, a solution that provides language agents for research 
+projects. I might leverage this for my project to save time and get to a 
+product sooner. I'll need to look further through the CAMEL-AI code to make sure 
+these language agents are the cognitive language agents I need for this; they 
+probably are, just want to make sure that is provided and clear.
+
 -- Implementations --
 
-[x] Entity Component System
-[ ] Generative AI Agents
+[x] Build ECS from tutorial/walkthrough
+[ ] Incorporate Generative AI Agents from package

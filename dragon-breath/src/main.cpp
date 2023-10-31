@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 {
     coordinator.Init();
     std::cout << "...coordinator initialized" << std::endl;
-    coordinator.RegisterComponent<dragonbreath::Transform>();
-    std::cout << "...transform component registered" << std::endl;
+    // register a component of your own type!
+    // std::cout << "...???? component registered" << std::endl;
     return 0;
 }
