@@ -1,0 +1,6 @@
+[submodule "dragon-breath/external/curl"]
+	path = dragon-breath/external/curl
+	url = https://github.com/curl/curl.git
+[submodule "dragon-breath/external/openssl"]
+	path = dragon-breath/external/openssl
+	url = https://github.com/openssl/openssl.git
