@@ -4,6 +4,10 @@ set(CMAKE_CXX_STANDARD 23)
 
 project(dragonbreath VERSION 2023.0)
 
+find_package(OpenSSL REQUIRED)
+
+add_subdirectory(external/curl)
+
 file(GLOB SOURCES "src/*.cpp")
 
 include_directories("include")
