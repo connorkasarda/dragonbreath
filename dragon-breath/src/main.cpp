@@ -6,14 +6,13 @@
 #include <iostream>
 #include "coordinator.h"
 #include "components.h"
+#include <curl/curl.h>
 
 dragonbreath::Coordinator coordinator;
 
 int main(int argc, char** argv)
 {
     coordinator.Init();
-    std::cout << "...coordinator initialized" << std::endl;
-    // register a component of your own type!
-    // std::cout << "...???? component registered" << std::endl;
+    std::cout << "coordinator initialized." << std::endl;
     return 0;
 }
