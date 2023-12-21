@@ -5,17 +5,15 @@
 
 #include <iostream>
 #include "coordinator.h"
-#include "components.h"
-#include <curl/curl.h>
-
-dragonbreath::Coordinator coordinator;
+#include "prompter.h"
 
 int main(int argc, char** argv)
 {
     std::cout << "DRAGONBREATH" << std::endl;
+    dragonbreath::Coordinator coordinator;
     coordinator.Init();
-    std::cout << "init step 1.: coordinator" << std::endl;
-    CURL* curl = curl_easy_init();
-    std::cout << "init step 2.: curl" << std::endl;
+    std::cout << "step 1.: coordinator initiated" << std::endl;
+    dragonbreath::Prompter prompter("test", "test");
+    std::cout << "step 2.: prompter initiated" << std::endl;
     return 0;
 }
