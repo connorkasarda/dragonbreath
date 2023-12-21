@@ -8,19 +8,13 @@ that is built from scratch with the addition of generative AI for the agents.
 Bib file contains sources I used for this project, including an ECS tutorial I 
 used for this project.
 
-May consider investigating the use of Python C API. This will allow use of the 
-OpenAI package to create generative agents in the soft real-time simulation; the
-Large Langauge Models (LLM) used for ChatGPT will be used from OpenAI. However,
-there are wrapper APIs available for C++, C#, etc. I might end up using one of 
-these for accessing the OpenAI API.
-
-Found out about CAMEL-AI, a solution that provides language agents for research 
-projects. I might leverage this for my project to save time and get to a 
-product sooner. I'll need to look further through the CAMEL-AI code to make sure 
-these language agents are the cognitive language agents I need for this; they 
-probably are, just want to make sure that is provided and clear.
+Cognitive Language Agents (CLA) will be a focus of this project. Each CLA will
+have a prompter that communicates with a LLM API, including OPENAI's API. The 
+idea is that CLAs will be able to communicate with each other in a virtual 
+environment. For example: classroom, coffee shop, library, village, etc.
 
 -- Implementations --
 
 [x] Build ECS from tutorial/walkthrough
-[ ] Incorporate Generative AI Agents from package
+[ ] Prompter communication with LLM API
+[ ] CLA incorporation into ECS
