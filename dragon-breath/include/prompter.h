@@ -19,7 +19,13 @@ namespace dragonbreath
         void Prompt();
         std::string GetResponse() const;
     private:
-        static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* output);
+        static size_t WriteCallback
+        (
+            void* contents,
+            size_t size,
+            size_t nmemb,
+            std::string* output
+        );
         const char* openaiAPIKey;
         const char* openaiAPIURL;
         std::string prompt;
