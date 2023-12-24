@@ -7,16 +7,24 @@
 #include "coordinator.h"
 #include "prompter.h"
 
-const char* OPENAI_API_KEY = "<PUT KEY HERE>";
-const char* OPENAI_API_URL = "<PUT URL HERE>";
-
 int main(int argc, char** argv)
 {
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <api_key> <api_url>" << std::endl;
+        return 1;
+    }
+    const char* openaiAPIkey = argv[1];
+    const char* openaiAPIURL = argv[2];
     std::cout << "DRAGONBREATH" << std::endl;
+    std::cout << "    OPENAI" << std::endl;
+    std::cout << "        API KEY: " << openaiAPIkey << std::endl;
+    std::cout << "        API URL: " << openaiAPIURL << std::endl;
+    std::cout << "    PROMPTER" << std::endl;
+    dragonbreath::Prompter prompter(openaiAPIkey, openaiAPIURL);
+    std::cout << "        CONSTRUCTED" << std::endl;
+    std::cout << "    COORDINATOR" << std::endl;
     dragonbreath::Coordinator coordinator;
     coordinator.Init();
-    std::cout << "step 1.: coordinator initiated" << std::endl;
-    dragonbreath::Prompter prompter(OPENAI_API_KEY, OPENAI_API_URL);
-    std::cout << "step 2.: prompter initiated" << std::endl;
+    std::cout << "        INITIALIZED" << std::endl;
     return 0;
 }
