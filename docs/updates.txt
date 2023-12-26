@@ -1,0 +1,19 @@
+** 26 DEC 2023 **
+
+OPENAI API prompting costs money and requires connection. May turn to implementing my own LLM.
+This will be quite the endeavor, but I believe I am capable. My imagination for the LLM organization.
+
+LLM/
+|-- src/
+|   |-- main.cpp               
+|   |-- tokenizer.cpp          
+|   |-- transformer.cpp       
+|   |-- attention.cpp 
+|   |-- language.cpp
+|-- include/
+|   |-- tokenizer.h
+|   |-- transformer.h
+|   |-- attention.h
+|   |-- language.h	
+
+Also, I will create a folder, called "models/" in which the trained models are stored.

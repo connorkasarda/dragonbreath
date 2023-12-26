@@ -2,7 +2,4 @@
 **/build/
 *.d
 *.o
-token.txt.gpg
-token.txt
-key.txt.gpg
-key.txt
+*.gpg
