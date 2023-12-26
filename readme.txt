@@ -14,10 +14,12 @@ that is built from scratch with the addition of generative AI for the agents.
 Bib file contains sources I used for this project, including an ECS tutorial I 
 used for this project.
 
-Cognitive Language Agents (CLA) will be a focus of this project. Each CLA will
-have a prompter that communicates with a LLM API, including OPENAI's API. The 
-idea is that CLAs will be able to communicate with each other in a virtual 
-environment. For example: classroom, coffee shop, library, village, etc.
+Cognitive Language Agents (CLA) will be a focus of this project. The plan of 
+attack is to either prompt an already existing LLM API via HTTP requests or 
+operate off of an LLM I make from scratch. Then, a cognitive architecture will
+leverage prompt engineering when communicating with the LLM. The end result 
+should be CLAs that live and interact in a virtual environment. For example: 
+classroom, coffee shop, library, village, etc.
 
 -- Implementations --
 
