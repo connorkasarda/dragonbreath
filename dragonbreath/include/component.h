@@ -18,19 +18,19 @@
 namespace dragonbreath
 {
     /**
-     * @brief Index assigned to a component type
+     * @brief Index value assigned to a component type
      *
      * The number of component types should be small, so using just 8 bits
      * for the possible range of component types is sufficient.
      */
-    using Component = std::uint8_t;
+    using ComponentType = std::uint8_t;
 
     /**
      * @brief Maximum number of allowed component types
      *
      * Keeps range of component types small. May need to adjust in the future.
      */
-    constexpr Component MAX_COMPONENTS = 64;
+    constexpr std::uint8_t MAX_COMPONENT_TYPES = 64;
 } // namespace dragonbreath
 
 #endif // COMPONENT_H
