@@ -14,7 +14,8 @@
 
 #include "entity.h"
 #include "component.h"
-#include "profile.h"
+#include "signature.h"
+#include "entity_manager.h"
 // more to come ...
 
 #endif // DRAGONBREATH_H

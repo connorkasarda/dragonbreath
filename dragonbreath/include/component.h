@@ -4,9 +4,8 @@
  *
  * Defines the range of possible component types the ECS can support. In
  * addition, sets a max limit on number of component types allowed.
- * Similar to how an entity is just an ID, a component will just be a type.
- * However, it should be noted that the component defined here is just the
- * component types ID. The actual component is a struct created later.
+ * Components themselves are exterior to this file and are defined as structs
+ * without behavior.
  *
  * @author Connor Kasarda
  * @date 24 Jan 2024
@@ -18,7 +17,7 @@
 namespace dragonbreath
 {
     /**
-     * @brief Index value assigned to a component type
+     * @brief The component type's unique identifier
      *
      * The number of component types should be small, so using just 8 bits
      * for the possible range of component types is sufficient.
@@ -30,7 +29,7 @@ namespace dragonbreath
      *
      * Keeps range of component types small. May need to adjust in the future.
      */
-    constexpr std::uint8_t MAX_COMPONENT_TYPES = 64;
+    constexpr std::uint8_t maxComponents = 64;
 } // namespace dragonbreath
 
 #endif // COMPONENT_H
