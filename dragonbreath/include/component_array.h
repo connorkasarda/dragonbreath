@@ -1,6 +1,6 @@
 /**
  * @file component_array.h
- * @brief template storage container for some type of components
+ * @brief template storage container for a type of components
  *
  * @author Connor Kasarda
  * @date 1 Feb 2024
@@ -9,6 +9,7 @@
 #ifndef COMPONENT_ARRAY_H
 #define COMPONENT_ARRAY_H
 
+#include <utility>
 #include <array>
 #include <unordered_map>
 #include "entity.h"
@@ -27,19 +28,17 @@ namespace dragonbreath
 		 *
 		 * When components regarding an entity are added, we must take
 		 * care to update the mappings from entity to index and index
-		 * to entity.
+		 * to entity. Also, whenever a component is added, we simply
+         * add it to the end of the array.
 		 */
 		void InsertData(Entity entity, T component)
 		{
-			// Place new component at last index
 			size_t index = size;
 			components[index] = component;
 
-			// Update entity and index mappings
-			entity2Index[entity] = index;
-			index2Entity[index] = entity;
+			entity2IndexMap[entity] = index;
+			index2EntityMap[index] = entity;
 
-			// Update array size information
 			++size;
 		}
 
@@ -48,36 +47,58 @@ namespace dragonbreath
 		 *
 		 * To keep array tightly packed, the component in the last
 		 * index is shifted to the index of the removed component.
+		 * Take care to update the mappings and keep track of the
+		 * component array's size. When a component is removed, it's
+         * just left in the array until it is overridden by a component
+         * that's added in the future.
 		 */
 		void RemoveData(Entity entity)
 		{
-			// Swap removed component with last component
-			size_t index2Replace = entity2IndexMap[entity];
-			size_t lastIndex = size - 1;
-			components[index2Replace] = components[lastIndex];
-			
-			// Update mappings for moved component
-			entityOfMovedComponent = index2Entity[lastIndex];
-			entity2IndexMap[entityOfMovedComponent] = index2Replace;
-			index2EntityMap[index2Replace] = entityOfMovedComponent;
+            auto entity2IndexMapIter = entity2IndexMap.find(entity);
+            if (entity2IndexMapIter != entity2IndexMap.end())
+            {
+                // Efficiently transfer last component to now empty index
+			    size_t indexOfRemovedEntity = entity2IndexMapIter->second;
+			    size_t lastIndex = size - 1;
+			    components[indexOfRemovedEntity] =
+                    std::move(components[lastIndex]);
 
-			// Remove old mappings
-			entity2IndexMap[entity].erase();
-			index2EntityMap[lastIndex].erase();
+                // Update entity and index mappings for moved component
+			    Entity entityOfMovedComponent = index2EntityMap[lastIndex];
+			    entity2IndexMap[entityOfMovedComponent] = indexOfRemovedEntity;
+			    index2EntityMap[indexOfRemovedEntity] = entityOfMovedComponent;
 
-			// Update array size information
-			--size;
+                // Batch erase to reduce lookup operations and deletions
+			    entity2IndexMap.erase(entity);
+			    index2EntityMap.erase(lastIndex);
+
+			    --size;
+            }
 		}
 
 		/**
 		 * @brief Retrieves the component data for entity
+         *
+         * Functions that simply retrieve data should remain const-correct
+         * given that a retrieval should not change the state of the object.
+         * However, if a key is not found, an unordered_map will add the key
+         * and change the object. We don't want that. This is avoided by using
+         * the find call on the unordered_map and checking first.
 		 *
 		 * @return T Component data getting returned
 		 */
-		T& GetData(Entity entity)
+		T& GetData(Entity entity) const
 		{
-			size_t indexOfEntity = entity2IndexMap[entity];
-			return components[indexOfEntity];
+            // Get index with find call for function to be const-correct
+            auto entity2IndexMapIter = entity2IndexMap.find(entity);
+            if (entity2IndexMapIter != entity2IndexMap.end())
+            {
+                size_t indexOfEntity = entity2IndexMapIter->second;
+			    return components[indexOfEntity];
+            }
+
+            // Returns default constructed component for now...
+            return T {};
 		}
 
 		// TODO Is a function needed for when an entity is destroyed?
@@ -105,6 +126,6 @@ namespace dragonbreath
 		 * @brief Size of the component array
 		 */
 		size_t size {};
-	}
-
+	}; // class ComponentArray
+} // namespace dragonbreath
 #endif
