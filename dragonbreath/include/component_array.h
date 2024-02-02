@@ -94,9 +94,8 @@ namespace dragonbreath
             if (entity2IndexMapIter != entity2IndexMap.end())
             {
                 size_t indexOfEntity = entity2IndexMapIter->second;
-			    return components[indexOfEntity];
+		return components[indexOfEntity];
             }
-
             // Returns default constructed component for now...
             return T {};
 	}
