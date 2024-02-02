@@ -12,6 +12,7 @@
 #ifndef DRAGONBREATH_H
 #define DRAGONBREATH_H
 
+#include "debug.h"
 #include "entity.h"
 #include "component.h"
 #include "signature.h"

@@ -22,14 +22,14 @@ namespace dragonbreath
      * The number of component types should be small, so using just 8 bits
      * for the possible range of component types is sufficient.
      */
-    using ComponentType = std::uint8_t;
+    using ComponentType = std::int8_t;
 
     /**
      * @brief Maximum number of allowed component types
      *
      * Keeps range of component types small. May need to adjust in the future.
      */
-    constexpr std::uint8_t maxComponents = 64;
+    constexpr std::int8_t maxComponents = 64;
 } // namespace dragonbreath
 
 #endif // COMPONENT_H
