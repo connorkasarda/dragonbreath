@@ -57,7 +57,7 @@ namespace dragonbreath
          *
          * @return signature The entity's signature
          */
-        Signature GetSignature(Entity entity);
+        Signature GetSignature(Entity entity) const;
     private:
         /**
          * @brief Entities that are on standby

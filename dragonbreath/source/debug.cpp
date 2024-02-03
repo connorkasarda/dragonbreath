@@ -12,6 +12,9 @@
 
 namespace dragonbreath
 {
+    /**
+     * @brief Called when dragon assert macro is engaged
+     */
     void error(int line, const char* file, const char* format, ...)
     {
         va_list args;

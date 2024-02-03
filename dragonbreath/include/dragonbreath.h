@@ -6,7 +6,7 @@
  * engine for your project.
  *
  * @author Connor Kasarda
- * date 25 Jan 2024
+ * @date 25 Jan 2024
  */
 
 #ifndef DRAGONBREATH_H

@@ -12,15 +12,30 @@
 #include <utility>
 #include <array>
 #include <unordered_map>
+#include "debug.h"
 #include "entity.h"
 
 namespace dragonbreath
 {
     /**
+     * @brief Common interface for all types of component arrays
+     *
+     * Unavoidable situation with having a common interface for all
+     * component arrays to use. Need this when iterating through every 
+     * component array for each component type. Allows all component 
+     * arrays to be stored in same list.
+     */
+    class IComponentArray
+    {
+    public:
+        virtual ~IComponentArray() = default;
+    };// IComponentArray
+
+    /**
      * @brief Template storage container class for components
      */
     template<typename T>
-    class ComponentArray
+    class ComponentArray : public IComponentArray
     {
     public:
         /**
@@ -30,16 +45,23 @@ namespace dragonbreath
 	 * care to update the mappings from entity to index and index
 	 * to entity. Also, whenever a component is added, we simply
          * add it to the end of the array.
+	 *
+	 * @param entity Entity of the component to insert
+	 * @param component Component data to insert
 	 */
-	void InsertData(Entity entity, T component)
+	void InsertData(Entity entity, const T& component)
 	{
-		size_t index = size;
-		components[index] = component;
+            DRAGON_ASSERT(
+	        size == maxEntities,
+		"components array full when insertion attempted");
 
-		entity2IndexMap[entity] = index;
-		index2EntityMap[index] = entity;
+	    size_t index = size;
+            components[index] = component;
 
-		++size;
+	    entity2IndexMap[entity] = index;
+	    index2EntityMap[index] = entity;
+
+	    ++size;
 	}
 
 	/**
@@ -51,29 +73,33 @@ namespace dragonbreath
 	 * component array's size. When a component is removed, it's
          * just left in the array until it is overridden by a component
          * that's added in the future.
+	 *
+	 * @param entity Entity of component data to remove
 	 */
 	void RemoveData(Entity entity)
 	{
-            auto entity2IndexMapIter = entity2IndexMap.find(entity);
-            if (entity2IndexMapIter != entity2IndexMap.end())
-            {
-                // Efficiently transfer last component to now empty index
-        	size_t indexOfRemovedEntity = entity2IndexMapIter->second;
-		size_t lastIndex = size - 1;
-		components[indexOfRemovedEntity] =
-                    std::move(components[lastIndex]);
+	    DRAGON_ASSERT(
+	        entity2IndexMap.find(entity) == entity2IndexMap.end(),
+		"entity not found in entity2IndexMap using RemoveData");
 
-                // Update entity and index mappings for moved component
-		Entity entityOfMovedComponent = index2EntityMap[lastIndex];
-		entity2IndexMap[entityOfMovedComponent] = indexOfRemovedEntity;
-		index2EntityMap[indexOfRemovedEntity] = entityOfMovedComponent;
+	    // Efficiently transfer last component to now empty index
+	    size_t indexOfRemovedEntity = entity2IndexMap[entity];
+	    size_t lastIndex = size - 1;
+	    components[indexOfRemovedEntity] =
+	        std::move(components[lastIndex]);
 
-                // Batch erase to reduce lookup operations and deletions
-		entity2IndexMap.erase(entity);
-		index2EntityMap.erase(lastIndex);
+	    // Update entity and index mappings for moved component
+	    Entity entityOfMovedComponent = index2EntityMap[lastIndex];
+	    entity2IndexMap[entityOfMovedComponent] = indexOfRemovedEntity;
+	    index2EntityMap[indexOfRemovedEntity] = entityOfMovedComponent;
 
-		--size;
-            }
+	    // Batch erase to reduce lookup operations and deletions
+	    entity2IndexMap.erase(entity);
+	    index2EntityMap.erase(lastIndex);
+	
+	    // Reduce size to allow overwrite of old last component copy
+	    // when a new component is added in its place
+	    --size;
 	}
 
 	/**
@@ -84,6 +110,8 @@ namespace dragonbreath
          * However, if a key is not found, an unordered_map will add the key
          * and change the object. We don't want that. This is avoided by using
          * the find call on the unordered_map and checking first.
+	 *
+	 * @param entity Entity of component data to be returned
 	 *
 	 * @return T Component data getting returned
 	 */
@@ -96,7 +124,12 @@ namespace dragonbreath
                 size_t indexOfEntity = entity2IndexMapIter->second;
 		return components[indexOfEntity];
             }
-            // Returns default constructed component for now...
+
+	    DRAGON_ASSERT(
+	        false,
+		"entity not found in entity2IndexMap using GetData");
+
+            // Returns default constructed component
             return T {};
 	}
 
