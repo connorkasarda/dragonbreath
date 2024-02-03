@@ -43,7 +43,7 @@ namespace dragonbreath
         signatures[entity] = signature;
     }
     // ------------------------------------------------------------------------
-    Signature EntityManager::GetSignature(Entity entity)
+    Signature EntityManager::GetSignature(Entity entity) const
     {
         return signatures[entity];
     }
