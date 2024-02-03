@@ -28,6 +28,9 @@ namespace dragonbreath
     class IComponentArray
     {
     public:
+	/**
+	 * @brief Destructor
+	 */
         virtual ~IComponentArray() = default;
     };// IComponentArray
 
@@ -112,8 +115,7 @@ namespace dragonbreath
          * the find call on the unordered_map and checking first.
 	 *
 	 * @param entity Entity of component data to be returned
-	 *
-	 * @return T Component data getting returned
+	 * @return Component data getting returned
 	 */
 	T& GetData(Entity entity) const
 	{
@@ -129,7 +131,6 @@ namespace dragonbreath
 	        false,
 		"entity not found in entity2IndexMap using GetData");
 
-            // Returns default constructed component
             return T {};
 	}
 
