@@ -35,7 +35,7 @@ namespace dragonbreath
      * in the future if the type alias Entity is defined with 8, 32, or 64 bits
      * instead of the default 16 bit range.
      */
-    constexpr std::int16_t maxEntities = 10000;
+    constexpr std::int16_t kMaxEntities = 10000;
 } // namespace dragonbreath
 
 #endif // ENTITY_H
