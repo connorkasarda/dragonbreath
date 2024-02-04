@@ -6,7 +6,7 @@
  * referenced by a component or the system to provide a bearing.
  *
  * @author Connor Kasarda
- * @date 24 Jan 2024
+ * @date 2024-01-24
  */
 
 #ifndef ENTITY_H

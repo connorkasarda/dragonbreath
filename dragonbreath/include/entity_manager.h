@@ -3,7 +3,7 @@
  * @brief Manages pool of entities
  *
  * @author Connor Kasarda
- * @date 29 Jan 2024
+ * @date 2024-01-29
  */
 
 #ifndef ENTITY_MANAGER_H
@@ -76,4 +76,4 @@ namespace dragonbreath
     }; // class Entity Manager
 } // namespace dragonbreath
 
-#endif
+#endif // ENTITY_MANAGER_H

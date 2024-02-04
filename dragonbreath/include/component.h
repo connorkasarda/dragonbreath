@@ -8,7 +8,7 @@
  * without behavior.
  *
  * @author Connor Kasarda
- * @date 24 Jan 2024
+ * @date 2024-01-24
  */
 
 #ifndef COMPONENT_H

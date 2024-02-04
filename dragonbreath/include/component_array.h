@@ -3,7 +3,7 @@
  * @brief template storage container for a type of components
  *
  * @author Connor Kasarda
- * @date 1 Feb 2024
+ * @date 2024-02-01
  */
 
 #ifndef COMPONENT_ARRAY_H
@@ -161,4 +161,5 @@ namespace dragonbreath
         size_t size {};
     }; // class ComponentArray
 } // namespace dragonbreath
-#endif
+
+#endif // COMPONENT_ARRAY_H

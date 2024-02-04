@@ -27,11 +27,29 @@ set(APP_SOURCES
     source/debug.cpp
     source/entity_manager.cpp)
 
-# Add the application target
+# Add the test source files
+set(
+    TEST_SOURCES
+    tests/source/main.cpp)
+
+# Create the Dragonbreath library
+add_library(dragonbreath_lib ${APP_SOURCES})
+target_include_directories(dragonbreath_lib PUBLIC include)
+
+# Build Dragonbreath executable
 add_executable(dragonbreath ${APP_SOURCES})
-
-# Include directories
 target_include_directories(dragonbreath PRIVATE include)
+target_link_libraries(dragonbreath PRIVATE dragonbreath_lib)
 
-# Define compiler features
-target_compile_features(dragonbreath PRIVATE cxx_std_23)
+# Build test executable
+add_executable(dragonbreath_test ${TEST_SOURCES})
+target_include_directories(dragonbreath_test PRIVATE include)
+target_link_libraries(dragonbreath_test PRIVATE dragonbreath_lib)
+
+# Enable testing functionality
+enable_testing()
+
+# Define the testing
+add_test(
+    NAME dragonbreath_test
+    COMMAND $<TARGET_FILE:dragonbreath_test>)

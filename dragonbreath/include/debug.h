@@ -3,7 +3,7 @@
  * @brief Defines assert macro for development purposes
  *
  * @author Connor Kasarda
- * @date 30 Jan 2024
+ * @date 2024-01-30
  */
 
 #ifndef DEBUG_H
@@ -28,6 +28,6 @@ namespace dragonbreath
     #else
         #define DRAGON_ASSERT(test, msg, ...) ((void)0)
     #endif
-}
+} // namespace dragonbreath
 
-#endif
+#endif // DEBUG_H
