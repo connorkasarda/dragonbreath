@@ -12,39 +12,39 @@ namespace dragonbreath
 {
     EntityManager::EntityManager()
     {
-        for (Entity entity = 0; entity < maxEntities; ++entity)
+        for (Entity entity = 0; entity < kMaxEntities; ++entity)
         {
-            entityPool.push(entity);
+            mEntityPool.push(entity);
         }
-    };
+    }
     // ------------------------------------------------------------------------
     EntityManager::~EntityManager()
     {
 
     }
     // ------------------------------------------------------------------------
-    Entity EntityManager::SpawnEntity()
+    Entity EntityManager::spawnEntity()
     {
-        Entity entity = entityPool.front();
-        entityPool.pop();
-        ++numEntitiesAlive;
+        Entity entity = mEntityPool.front();
+        mEntityPool.pop();
+        ++mNumEntitiesAlive;
         return entity;
     }
     // ------------------------------------------------------------------------
-    void EntityManager::DespawnEntity(Entity entity)
+    void EntityManager::despawnEntity(Entity entity)
     {
-        signatures[entity].reset();
-        entityPool.push(entity);
-        --numEntitiesAlive;
+        mSignatures[entity].reset();
+        mEntityPool.push(entity);
+        --mNumEntitiesAlive;
     }
     // ------------------------------------------------------------------------
-    void EntityManager::SetSignature(Entity entity, Signature signature)
+    void EntityManager::setSignature(Entity entity, Signature signature)
     {
-        signatures[entity] = signature;
+        mSignatures[entity] = signature;
     }
     // ------------------------------------------------------------------------
-    Signature EntityManager::GetSignature(Entity entity) const
+    Signature EntityManager::getSignature(Entity entity) const
     {
-        return signatures[entity];
+        return mSignatures[entity];
     }
 } // namespace dragonbreath

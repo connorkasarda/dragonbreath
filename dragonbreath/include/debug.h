@@ -16,8 +16,9 @@ namespace dragonbreath
      */
     void error(int line, const char* file, const char* format, ...);
 
+    // Define assertion macro for development
     #if defined(DEVELOPMENT)
-        #define DRAGON_ASSERT(test, msg, ...) \
+        #define DEV_ASSERT(test, msg, ...) \
             do { \
                 if (!(test)) { \
                     dragonbreath::error(__LINE__, __FILE__, \
@@ -26,8 +27,21 @@ namespace dragonbreath
                 } \
             } while (0)
     #else
-        #define DRAGON_ASSERT(test, msg, ...) ((void)0)
+        #define DEV_ASSERT(test, msg, ...) ((void)0)
     #endif
+
+    // Define assertion macro for testing
+    #define TEST_ASSERT(test) \
+        do { \
+	    if (!(test)) { \
+                dragonbreath::error( \
+		    __LINE__, \
+		    __FILE__, \
+		    "Test failed: %s\n" \
+                    #test); \
+            } \
+	} while (0)
+
 } // namespace dragonbreath
 
 #endif // DEBUG_H

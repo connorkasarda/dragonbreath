@@ -27,7 +27,7 @@ namespace dragonbreath
      * with it, where the id is the index in the bitset. 0 meaning entity does
      * not have that component type, 1 meaning it does.
      */
-    using Signature = std::bitset<maxComponents>;
+    using Signature = std::bitset<kMaxComponents>;
 } // namespace dragonbreath
 
 #endif // SIGNATURE_H

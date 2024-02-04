@@ -52,19 +52,19 @@ namespace dragonbreath
 	 * @param entity Entity of the component to insert
 	 * @param component Component data to insert
 	 */
-	void InsertData(Entity entity, const T& component)
+	void insertData(Entity entity, const T& component)
 	{
-            DRAGON_ASSERT(
-	        size == maxEntities,
-		"components array full when insertion attempted");
+            DEV_ASSERT(
+	        mSize == kMaxEntities,
+		"components array full when insertData called");
 
-	    size_t index = size;
-            components[index] = component;
+	    size_t index = mSize;
+            mComponents[index] = component;
 
-	    entity2IndexMap[entity] = index;
-	    index2EntityMap[index] = entity;
+	    mEntity2IndexMap[entity] = index;
+	    mIndex2EntityMap[index] = entity;
 
-	    ++size;
+	    ++mSize;
 	}
 
 	/**
@@ -79,30 +79,30 @@ namespace dragonbreath
 	 *
 	 * @param entity Entity of component data to remove
 	 */
-	void RemoveData(Entity entity)
+	void removeData(Entity entity)
 	{
-	    DRAGON_ASSERT(
-	        entity2IndexMap.find(entity) == entity2IndexMap.end(),
+	    DEV_ASSERT(
+	        mEntity2IndexMap.find(entity) == mEntity2IndexMap.end(),
 		"entity not found in entity2IndexMap using RemoveData");
 
 	    // Efficiently transfer last component to now empty index
-	    size_t indexOfRemovedEntity = entity2IndexMap[entity];
-	    size_t lastIndex = size - 1;
-	    components[indexOfRemovedEntity] =
-	        std::move(components[lastIndex]);
+	    size_t indexOfRemovedEntity = mEntity2IndexMap[entity];
+	    size_t lastIndex = mSize - 1;
+	    mComponents[indexOfRemovedEntity] =
+	        std::move(mComponents[lastIndex]);
 
 	    // Update entity and index mappings for moved component
-	    Entity entityOfMovedComponent = index2EntityMap[lastIndex];
-	    entity2IndexMap[entityOfMovedComponent] = indexOfRemovedEntity;
-	    index2EntityMap[indexOfRemovedEntity] = entityOfMovedComponent;
+	    Entity entityOfMovedComponent = mIndex2EntityMap[lastIndex];
+	    mEntity2IndexMap[entityOfMovedComponent] = indexOfRemovedEntity;
+	    mIndex2EntityMap[indexOfRemovedEntity] = entityOfMovedComponent;
 
 	    // Batch erase to reduce lookup operations and deletions
-	    entity2IndexMap.erase(entity);
-	    index2EntityMap.erase(lastIndex);
+	    mEntity2IndexMap.erase(entity);
+	    mIndex2EntityMap.erase(lastIndex);
 	
 	    // Reduce size to allow overwrite of old last component copy
 	    // when a new component is added in its place
-	    --size;
+	    --mSize;
 	}
 
 	/**
@@ -117,17 +117,17 @@ namespace dragonbreath
 	 * @param entity Entity of component data to be returned
 	 * @return Component data getting returned
 	 */
-	T& GetData(Entity entity) const
+	T& getData(Entity entity) const
 	{
             // Get index with find call for function to be const-correct
-            auto entity2IndexMapIter = entity2IndexMap.find(entity);
-            if (entity2IndexMapIter != entity2IndexMap.end())
+            auto entity2IndexMapIter = mEntity2IndexMap.find(entity);
+            if (entity2IndexMapIter != mEntity2IndexMap.end())
             {
                 size_t indexOfEntity = entity2IndexMapIter->second;
-		return components[indexOfEntity];
+		return mComponents[indexOfEntity];
             }
 
-	    DRAGON_ASSERT(
+	    DEV_ASSERT(
 	        false,
 		"entity not found in entity2IndexMap using GetData");
 
@@ -143,22 +143,22 @@ namespace dragonbreath
 	 * the sake of efficiency. When a component needs to be
 	 * removed, last element will fill its place.
 	 */
-	std::array<T, maxEntities> components {};
+	std::array<T, kMaxEntities> mComponents {};
 
 	/**
 	 * @brief Mapping from entity ID to component array index
 	 */
-	std::unordered_map<Entity, size_t> entity2IndexMap {};
+	std::unordered_map<Entity, size_t> mEntity2IndexMap {};
 
 	/**
 	 * @brief Mapping from component array index to entity ID
 	 */
-	std::unordered_map<size_t, Entity> index2EntityMap {};
+	std::unordered_map<size_t, Entity> mIndex2EntityMap {};
 
         /**
 	 * @brief Size of the component array
          */
-        size_t size {};
+        size_t mSize {};
     }; // class ComponentArray
 } // namespace dragonbreath
 

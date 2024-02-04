@@ -43,7 +43,7 @@ target_link_libraries(dragonbreath PRIVATE dragonbreath_lib)
 
 # Build test executable
 add_executable(dragonbreath_test ${TEST_SOURCES})
-target_include_directories(dragonbreath_test PRIVATE include)
+target_include_directories(dragonbreath_test PRIVATE include tests/include)
 target_link_libraries(dragonbreath_test PRIVATE dragonbreath_lib)
 
 # Enable testing functionality

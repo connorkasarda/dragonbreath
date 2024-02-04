@@ -40,39 +40,39 @@ namespace dragonbreath
          *
          * @return entity The spawned entity
          */
-        Entity SpawnEntity();
+        Entity spawnEntity();
 
         /**
          * @brief Destroys alive entity and enqueues to pool
          */
-        void DespawnEntity(Entity entity);
+        void despawnEntity(Entity entity);
 
         /**
          * @brief Sets the signature for an entity
          */
-        void SetSignature(Entity entity, Signature signature);
+        void setSignature(Entity entity, Signature signature);
 
         /**
          * @brief Retrieves the signature of an entity
          *
          * @return signature The entity's signature
          */
-        Signature GetSignature(Entity entity) const;
+        Signature getSignature(Entity entity) const;
     private:
         /**
          * @brief Entities that are on standby
          */
-        std::queue<Entity> entityPool {};
+        std::queue<Entity> mEntityPool {};
 
         /**
          * @brief The signatures for each entity
          */
-        std::array<Signature, maxEntities> signatures {};
+        std::array<Signature, kMaxEntities> mSignatures {};
 
         /**
          * @brief The number of live entities
          */
-        std::int16_t numEntitiesAlive {};
+        std::int16_t mNumEntitiesAlive {};
     }; // class Entity Manager
 } // namespace dragonbreath
 

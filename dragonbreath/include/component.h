@@ -29,7 +29,7 @@ namespace dragonbreath
      *
      * Keeps range of component types small. May need to adjust in the future.
      */
-    constexpr std::int8_t maxComponents = 64;
+    constexpr std::int8_t kMaxComponents = 64;
 } // namespace dragonbreath
 
 #endif // COMPONENT_H
