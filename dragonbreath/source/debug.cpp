@@ -3,7 +3,7 @@
  * @brief Defines error response behavior for assert
  *
  * @author Connor Kasarda
- * @date 30 Jan 2024
+ * @date 2024-01-30
  */
 
 #include <cstdio>
@@ -24,4 +24,4 @@ namespace dragonbreath
         va_end(args);
         std::fprintf(stderr, "\n");
     }
-}
+} // namespace dragonbreath

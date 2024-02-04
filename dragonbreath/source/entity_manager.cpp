@@ -3,7 +3,7 @@
  * @brief Manages pool of entities
  *
  * @author Connor Kasarda
- * @date 29 Jan 2024
+ * @date 2024-01-29
  */
 
 #include "entity_manager.h"

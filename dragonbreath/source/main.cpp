@@ -5,7 +5,7 @@
  * Runs dragonbreath ECS engine code.
  *
  * @author Connor Kasarda
- * @date 25 Jan 2024
+ * @date 2024-01-25
  */
 
 #include <iostream>
