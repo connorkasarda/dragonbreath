@@ -25,6 +25,16 @@ namespace dragonbreath
     using ComponentType = std::int8_t;
 
     /**
+     * @brief The name of the component type
+     *
+     * Unordered map key perfomance improves with const char* as opposed to
+     * std::string. That's becauase it can be converted to a size_t, of which
+     * allows the hashing to be more efficient. We are also grabbing the
+     * component name from the template typename.
+     */
+    using ComponentName = const char*;
+
+    /**
      * @brief Maximum number of allowed component types
      *
      * Keeps range of component types small. May need to adjust in the future.

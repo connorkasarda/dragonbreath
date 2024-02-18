@@ -32,7 +32,14 @@ namespace dragonbreath
 	 * @brief Destructor
 	 */
         virtual ~IComponentArray() = default;
-    };// IComponentArray
+
+	/**
+	 * @brief Common method to trigger when an entity is destroyed
+	 *
+	 * @param entity Entity that was destroyed
+	 */
+	virtual void entityDestroyed(Entity entity) = 0;
+    }; // IComponentArray
 
     /**
      * @brief Template storage container class for components
@@ -41,6 +48,16 @@ namespace dragonbreath
     class ComponentArray : public IComponentArray
     {
     public:
+	/**
+	 * @brief Constructor
+	 *
+	 * @param typeName the name of the component type
+	 */
+	ComponentArray()
+	{
+            
+	}
+
         /**
 	 * @brief Inserts component data for target entity
 	 *
@@ -54,9 +71,13 @@ namespace dragonbreath
 	 */
 	void insertData(Entity entity, const T& component)
 	{
-            DEV_ASSERT(
-	        mSize == kMaxEntities,
-		"components array full when insertData called");
+	    if (mSize == kMaxEntities)
+	    {
+                DEV_ASSERT(
+	            false,
+		    "components array full when insertData called");
+		return;
+            }
 
 	    size_t index = mSize;
             mComponents[index] = component;
@@ -81,12 +102,17 @@ namespace dragonbreath
 	 */
 	void removeData(Entity entity)
 	{
-	    DEV_ASSERT(
-	        mEntity2IndexMap.find(entity) == mEntity2IndexMap.end(),
-		"entity not found in entity2IndexMap using RemoveData");
+            auto entity2IndexMapIter = mEntity2IndexMap.find(entity);
+	    if (entity2IndexMapIter == mEntity2IndexMap.end())
+            {
+	        DEV_ASSERT(
+	            false,
+		    "entity not found in entity2IndexMap using RemoveData");
+		return;
+            }
 
 	    // Efficiently transfer last component to now empty index
-	    size_t indexOfRemovedEntity = mEntity2IndexMap[entity];
+	    size_t indexOfRemovedEntity = entity2IndexMapIter->second;
 	    size_t lastIndex = mSize - 1;
 	    mComponents[indexOfRemovedEntity] =
 	        std::move(mComponents[lastIndex]);
@@ -117,7 +143,7 @@ namespace dragonbreath
 	 * @param entity Entity of component data to be returned
 	 * @return Component data getting returned
 	 */
-	T& getData(Entity entity) const
+	const T& getData(Entity entity) const
 	{
             // Get index with find call for function to be const-correct
             auto entity2IndexMapIter = mEntity2IndexMap.find(entity);
@@ -127,14 +153,25 @@ namespace dragonbreath
 		return mComponents[indexOfEntity];
             }
 
+	    // Pass back a default empty component if desired component is not
+	    // found in the map. Static value because we don't want repeated
+	    // initialization but we want a consistent default value!
 	    DEV_ASSERT(
 	        false,
 		"entity not found in entity2IndexMap using GetData");
-
-            return T {};
+            static const T defaultComponent {};
+            return defaultComponent;
 	}
 
-	// TODO Is a function needed for when an entity is destroyed?
+	/**
+	 * @brief Called on the event of entity destruction
+	 *
+	 * @param entity Entity that was destroyed
+	 */
+        void entityDestroyed(Entity entity) override
+	{
+            removeData(entity);
+	}
     private:
 	/**
 	 * @brief The array of components

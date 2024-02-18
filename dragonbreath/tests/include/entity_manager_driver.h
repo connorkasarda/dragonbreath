@@ -29,6 +29,8 @@ namespace dragonbreath
          * @brief Performs cleanup after test cases
          */
         void tearDown() override;
+
+	// TODO Methods for each feature or capability to test
     }; // class EntityManagerDriver
 } // namespace dragonbreath
 
