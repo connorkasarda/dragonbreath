@@ -58,7 +58,7 @@ namespace dragonbreath
 	    }
 
             mName2TypeMap.insert(
-		std::make_pair(regdCompName, mComponentTypeCounter 
+		std::make_pair(regdCompName, mComponentTypeCounter)); 
             mName2ArrayMap.insert(
                 std::make_pair(
 		    regdCompName, std::make_shared<ComponentArray<T>>()));
