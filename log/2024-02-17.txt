@@ -1,0 +1,30 @@
+I learned about the importance of smart pointers, especially shared pointers.
+Further research into the documentation convinced me that shared pointers are
+needed when polymorphism and dynamic memory allocation/deallocation is in play.
+
+For example, the base interface IComponentArray was created to allow all
+specializations of the template class ComponentArray to belong to the same
+mapping in the ComponentManager. In addition, component arrays are dynamically
+allocated/deallocated so pointers are required. Therefore, combining these
+requirements begs for the use of shared pointers, or shared_ptr.
+
+In adding shared_ptr, I also was forced to discover make_shared.
+
+...
+
+Yesterday, I came across a piece of media that inspired me to write down my
+thoughts during the work process. In other words, a log. Journaling served as a
+motivational force for a young man's game development journey. Even if little
+or nil was accomplished that day, he put it down in text. No matter what.
+
+This is percisely why I'm writing to the audience today. I feel that my
+journals will allow me to process my work and clear my mind for the days to
+come. Also, the process of logging my process makes me feel like Captain James
+T. Kirk and breathes story into it all.
+
+Not only does this motivate me, it makes me feel that this project has a
+meaningful purpose and could help myself and others someday. I can't wait to
+see what comes of this project, my growth, and what others do with it. And that
+makes me really happy.
+
+Okay, enough cheesy stuff -- let's get to work!
