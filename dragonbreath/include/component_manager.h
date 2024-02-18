@@ -25,7 +25,10 @@ namespace dragonbreath
         /**
 	 * @brief Constructor
 	 */
-	ComponentManager() = default;
+	ComponentManager() : mComponentTypeCounter(0)
+	{
+
+	}
 
 	/**
 	 * @brief Destructor
@@ -45,22 +48,44 @@ namespace dragonbreath
 	{
 	    // Typically, want to avoid typeid usage but output does not need
 	    // to be human readable so its use is allowed here.
-            ComponentName regCompName = typeid(T).name();
+            ComponentName regdCompName = typeid(T).name();
             
-	    if (mName2TypeMap.find(regCompName) != mName2TypeMap.end())
+	    if (mName2TypeMap.find(regdCompName) != mName2TypeMap.end())
 	    {
                 DEV_ASSERT(
 	            false,
-		    "registerComponent tried registering existing component");
+		    "registerComponent tried adding existing component");
 	    }
 
-            // TODO
+            mName2TypeMap.insert(
+		std::make_pair(regdCompName, mComponentTypeCounter 
+            mName2ArrayMap.insert(
+                std::make_pair(
+		    regdCompName, std::make_shared<ComponentArray<T>>()));
+
+	    ++mComponentTypeCounter;
 	}
+
+        // TODO add component, remove component?, ...
     private:
         /**
 	 * @brief Mapping from component type name to the component type
 	 */
         std::unordered_map<ComponentName, ComponentType> mName2TypeMap {};
+
+	/**
+	 * @brief Mapping from component type name to the component array
+	 */
+	std::unordered_map<ComponentName, std::shared_ptr<IComponentArray>>
+            mName2ArrayMap {};
+
+        /**
+	 * @brief Keeps track of the component types
+	 *
+	 * Latest value is assigned to newly assigned component. Works
+	 * similarly to a counter.
+	 */
+	ComponentType mComponentTypeCounter {};
     }; // class ComponentManager
 } // namespace dragonbreath
 

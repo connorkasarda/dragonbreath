@@ -82,8 +82,8 @@ namespace dragonbreath
 	    size_t index = mSize;
             mComponents[index] = component;
 
-	    mEntity2IndexMap[entity] = index;
-	    mIndex2EntityMap[index] = entity;
+	    mEntity2IndexMap.insert(std::make_pair(entity, index));
+	    mIndex2EntityMap.insert(std::make_pair(index, entity));
 
 	    ++mSize;
 	}
@@ -119,8 +119,10 @@ namespace dragonbreath
 
 	    // Update entity and index mappings for moved component
 	    Entity entityOfMovedComponent = mIndex2EntityMap[lastIndex];
-	    mEntity2IndexMap[entityOfMovedComponent] = indexOfRemovedEntity;
-	    mIndex2EntityMap[indexOfRemovedEntity] = entityOfMovedComponent;
+	    mEntity2IndexMap.insert(
+	        std::make_pair(entityOfMovedComponent, indexOfRemovedEntity));
+	    mIndex2EntityMap.insert(
+	        std::make_pair(indexOfRemovedEntity, entityOfMovedComponent));
 
 	    // Batch erase to reduce lookup operations and deletions
 	    mEntity2IndexMap.erase(entity);

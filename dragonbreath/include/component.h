@@ -32,7 +32,7 @@ namespace dragonbreath
      * allows the hashing to be more efficient. We are also grabbing the
      * component name from the template typename.
      */
-    using ComponentName = const char*;
+    using ComponentName = const char *;
 
     /**
      * @brief Maximum number of allowed component types
