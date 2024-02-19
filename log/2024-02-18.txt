@@ -1,0 +1,12 @@
+I continued work on the ComponentManager and edited the readme today. I had to
+read up on the static pointer cast as it is vital for getting the true form of 
+a derived class. For example, I had a mapping of component type names to their 
+IComponentArray base class. However, what's really stored is the specialization
+of the ComponentArray template class. Thus, a "downcast" is required -- and
+that's where the static pointer cast comes in. Essentially, instead of the base
+IComponentArray getting returned, you can force the ComponentArray<T> to be
+returned! Very cool stuff.
+
+C++ is a seemingly limitless language with all sorts of tricks up its sleeve.
+However, this can lead to momentary headaches and confusion. The only way to
+master it is to continue trudging through this project.

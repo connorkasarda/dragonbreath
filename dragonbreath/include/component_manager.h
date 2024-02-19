@@ -9,8 +9,9 @@
 #ifndef COMPONENT_MANAGER_H
 #define COMPONENT_MANAGER_H
 
+#include <memory>
 #include <unordered_map>
-#include <type_traits>
+#include "entity.h"
 #include "component.h"
 #include "component_array.h"
 
@@ -36,7 +37,7 @@ namespace dragonbreath
 	~ComponentManager() = default;
 
 	/**
-	 * @brief Registers a new component
+	 * @brief Registers a new component type
 	 *
 	 * Typically, wouldn't want to use typeid(T).name() because it can be
 	 * unpredictable and far from human readable. However, the output is
@@ -44,10 +45,10 @@ namespace dragonbreath
 	 * use here is okay.
 	 */
         template<typename T>
-	void registerComponent()
+	void registerComponentType()
 	{
 	    // Typically, want to avoid typeid usage but output does not need
-	    // to be human readable so its use is allowed here.
+	    // to be human readable so its use is acceptable here.
             ComponentName regdCompName = typeid(T).name();
             
 	    if (mName2TypeMap.find(regdCompName) != mName2TypeMap.end())
@@ -58,15 +59,44 @@ namespace dragonbreath
 	    }
 
             mName2TypeMap.insert(
-		std::make_pair(regdCompName, mComponentTypeCounter)); 
+		std::make_pair(regdCompName, mComponentTypeIDAssigner)); 
             mName2ArrayMap.insert(
                 std::make_pair(
 		    regdCompName, std::make_shared<ComponentArray<T>>()));
 
-	    ++mComponentTypeCounter;
+	    ++mComponentTypeIDAssigner;
 	}
 
-        // TODO add component, remove component?, ...
+	/**
+	 * @brief Adds component to the appropriate component array
+	 */
+	template<typename T>
+        void addComponent(Entity entity, T component)
+	{
+            getComponentArray<T>()->insertData(entity, component);
+	}
+
+	/**
+	 * @brief Removes component from the appropriate component array
+	 */
+	template<typename T>
+	void removeComponent(T component)
+	{
+            getComponentArray<T>()->removeData(component);
+	}
+
+	/**
+	 * @brief Called whenever an entity is destroyed to trigger removal
+	 */
+	void entityDestroyed(Entity entity)
+	{
+            for (auto const& pair : mName2ArrayMap)
+	    {
+                auto const& componentArray = pair->second;
+
+		componentArray->entityDestroyed(entity);
+	    }
+	}
     private:
         /**
 	 * @brief Mapping from component type name to the component type
@@ -85,7 +115,36 @@ namespace dragonbreath
 	 * Latest value is assigned to newly assigned component. Works
 	 * similarly to a counter.
 	 */
-	ComponentType mComponentTypeCounter {};
+	ComponentType mComponentTypeIDAssigner {};
+
+	/**
+	 * @brief Helper function returning the component array based on T
+	 *
+	 * We need to do this with care. Since polymorphism was used to allow
+	 * all specialized ComponentArray objects to be stored in the same
+	 * mapping, the shared_ptr to the IComponentArray needs to be
+	 * downcasted so that the shared_ptr has the derived classes info in
+	 * the form of ComponentArray<T>.
+	 */
+	template<typename T>
+	std::shared_ptr<ComponentArray<T>> getComponentArray() const
+	{
+            ComponentName = typeid(T).name();
+            
+	    if (mName2TypeMap.find(regdCompName) == mName2TypeMap.end())
+	    {
+                DEV_ASSERT(
+	            false,
+		    "getComponentArray tried accessing array of unregistered "\
+		    "component type");
+		return nullptr;
+	    }
+
+	    auto name2ArrayMapIter = mName2ArrayMapIter.find(ComponentName);
+
+            return static_pointer_cast<ComponentType<T>>(
+	        name2ArrayMapIter->second);
+	}	
     }; // class ComponentManager
 } // namespace dragonbreath
 

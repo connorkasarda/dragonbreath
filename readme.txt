@@ -2,4 +2,4 @@
 ░█░█░█▀▄░█▀█░█░█░█░█░█░█░█▀▄░█▀▄░█▀▀░█▀█░░█░░█▀█
 ░▀▀░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀░░▀░▀░▀▀▀░▀░▀░░▀░░▀░▀
 
-C++ Entity Component System (ECS) for text-generating games
+C++ Entity Component System (ECS) for text-based games and adventures

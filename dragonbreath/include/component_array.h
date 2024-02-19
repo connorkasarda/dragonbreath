@@ -165,7 +165,7 @@ namespace dragonbreath
             return defaultComponent;
 	}
 
-	/**
+        /**
 	 * @brief Called on the event of entity destruction
 	 *
 	 * @param entity Entity that was destroyed
