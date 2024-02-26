@@ -1,0 +1,7 @@
+I retreated to my entity and entity manager code to realize that some of the
+functionality could be safer. I provided a new constant that identifies when an
+invalid entity has been return: -1. For the most part, this occurs when anyone
+tries to spawn an entity where the entity pool is empty.
+
+In addition, the spawnEntity function has a new assert and if check in case it
+is called when the entity pool is empty.

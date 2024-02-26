@@ -1,0 +1,19 @@
+Today, I spent little time on the project. However, I spent that little amount
+of time to consider the implementation of the systems.
+
+Systems are different from entities and components in that each system has
+very different functionality amongst each other. The only similarity between
+systems I can think of is that they all have a set or list of entities affected
+by the system. For example, an entity with a transform component is probably
+affected by a physics system.
+
+Thus, the system class can simply serve as a base class that needs to be
+inherited to ensure all systems have a set of entities. But that's it!
+
+Then, there should be a system manager to...well...manage all of the systems.
+At this point all of the managers should be complete and then there will be a
+class that acts as the "commander" or "coordinator" to inform all of the
+managers on what to carry out.
+
+I'm still thinking about what functionality the system manager needs and I am
+hoping that tomorrow it's more clear.

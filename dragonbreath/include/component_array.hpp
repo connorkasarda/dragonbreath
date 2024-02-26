@@ -1,5 +1,5 @@
 /**
- * @file component_array.h
+ * @file component_array.hpp
  * @brief template storage container for a type of components
  *
  * @author Connor Kasarda
@@ -50,8 +50,6 @@ namespace dragonbreath
     public:
 	/**
 	 * @brief Constructor
-	 *
-	 * @param typeName the name of the component type
 	 */
 	ComponentArray()
 	{

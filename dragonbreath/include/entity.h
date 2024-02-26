@@ -13,6 +13,7 @@
 #define ENTITY_H
 
 #include <cstdint>
+#include <limits>
 
 namespace dragonbreath
 {
@@ -30,12 +31,18 @@ namespace dragonbreath
     /**
      * @brief Sets the maximum limit for number of entities in simulation
      *
-     * The number of max entities is defaulted to 10000 for the unsigned 16 bit
+     * The number of max entities is defaulted to max of signed 16 bit
      * indexing range defined for game objects. Of course, this could be varied
      * in the future if the type alias Entity is defined with 8, 32, or 64 bits
      * instead of the default 16 bit range.
      */
-    constexpr std::int16_t kMaxEntities = 10000;
+    constexpr std::int16_t kMaxEntities =
+        std::numeric_limits<std::int16_t>::max();
+
+    /**
+     * @brief default value returned when Entity cannot be spawned
+     */
+    constexpr Entity kInvalidEntity = -1;
 } // namespace dragonbreath
 
 #endif // ENTITY_H

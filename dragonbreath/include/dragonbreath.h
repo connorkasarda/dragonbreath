@@ -17,7 +17,8 @@
 #include "component.h"
 #include "signature.h"
 #include "entity_manager.h"
-#include "component_array.h"
+#include "component_array.hpp"
+#include "component_manager.hpp"
 // more to come ...
 
 #endif // DRAGONBREATH_H

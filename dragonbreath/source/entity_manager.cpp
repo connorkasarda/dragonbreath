@@ -6,11 +6,12 @@
  * @date 2024-01-29
  */
 
+#include "debug.h"
 #include "entity_manager.h"
 
 namespace dragonbreath
 {
-    EntityManager::EntityManager()
+    EntityManager::EntityManager() : mNumEntitiesAlive(0)
     {
         for (Entity entity = 0; entity < kMaxEntities; ++entity)
         {
@@ -25,6 +26,13 @@ namespace dragonbreath
     // ------------------------------------------------------------------------
     Entity EntityManager::spawnEntity()
     {
+        if (mNumEntitiesAlive == kMaxEntities)
+	{
+            DEV_ASSERT(false, "Max number of entities reached when attempting"\
+	        "spawnEntity function call");
+	    return kInvalidEntity;
+	}
+
         Entity entity = mEntityPool.front();
         mEntityPool.pop();
         ++mNumEntitiesAlive;

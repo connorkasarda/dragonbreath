@@ -1,5 +1,5 @@
 /**
- * @file component_manager.h
+ * @file component_manager.hpp
  * @brief Manages components with respect to component arrays
  *
  * @author Connor Kasarda
@@ -11,22 +11,17 @@
 
 #include <memory>
 #include <unordered_map>
-#include "entity.h"
-#include "component.h"
-#include "component_array.h"
+#include "component_array.hpp"
 
 namespace dragonbreath
 {
-    /**
-     * @brief Manages the component arrays for each registered component type
-     */
     class ComponentManager
     {
     public:
         /**
 	 * @brief Constructor
 	 */
-	ComponentManager() : mComponentTypeCounter(0)
+	ComponentManager() : mComponentTypeIDAssigner(0)
 	{
 
 	}
@@ -56,6 +51,7 @@ namespace dragonbreath
                 DEV_ASSERT(
 	            false,
 		    "registerComponent tried adding existing component");
+		return;
 	    }
 
             mName2TypeMap.insert(
@@ -69,6 +65,9 @@ namespace dragonbreath
 
 	/**
 	 * @brief Adds component to the appropriate component array
+	 *
+	 * @param entity Entity component belongs to
+	 * @param component Component to add to component array
 	 */
 	template<typename T>
         void addComponent(Entity entity, T component)
@@ -78,6 +77,8 @@ namespace dragonbreath
 
 	/**
 	 * @brief Removes component from the appropriate component array
+	 *
+	 * @param component Component to be removed
 	 */
 	template<typename T>
 	void removeComponent(T component)
@@ -87,12 +88,14 @@ namespace dragonbreath
 
 	/**
 	 * @brief Called whenever an entity is destroyed to trigger removal
+	 *
+	 * @param entity Entity that was destroyed
 	 */
 	void entityDestroyed(Entity entity)
 	{
             for (auto const& pair : mName2ArrayMap)
 	    {
-                auto const& componentArray = pair->second;
+                auto const& componentArray = pair.second;
 
 		componentArray->entityDestroyed(entity);
 	    }
@@ -125,13 +128,15 @@ namespace dragonbreath
 	 * mapping, the shared_ptr to the IComponentArray needs to be
 	 * downcasted so that the shared_ptr has the derived classes info in
 	 * the form of ComponentArray<T>.
+	 *
+	 * @return shared pointer to the specialized component array
 	 */
 	template<typename T>
 	std::shared_ptr<ComponentArray<T>> getComponentArray() const
 	{
-            ComponentName = typeid(T).name();
+            ComponentName compName = typeid(T).name();
             
-	    if (mName2TypeMap.find(regdCompName) == mName2TypeMap.end())
+	    if (mName2TypeMap.find(compName) == mName2TypeMap.end())
 	    {
                 DEV_ASSERT(
 	            false,
@@ -140,9 +145,9 @@ namespace dragonbreath
 		return nullptr;
 	    }
 
-	    auto name2ArrayMapIter = mName2ArrayMapIter.find(ComponentName);
+	    auto name2ArrayMapIter = mName2ArrayMap.find(compName);
 
-            return static_pointer_cast<ComponentType<T>>(
+            return std::static_pointer_cast<ComponentArray<T>>(
 	        name2ArrayMapIter->second);
 	}	
     }; // class ComponentManager

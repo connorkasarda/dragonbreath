@@ -25,11 +25,11 @@ endif()
 set(APP_SOURCES
     source/main.cpp
     source/debug.cpp
-    source/entity_manager.cpp)
+    source/entity_manager.cpp
+    source/system.cpp)
 
 # Add the test source files
-set(
-    TEST_SOURCES
+set(TEST_SOURCES
     tests/source/main.cpp)
 
 # Create the Dragonbreath library
