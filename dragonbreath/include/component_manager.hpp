@@ -136,16 +136,17 @@ namespace dragonbreath
 	{
             ComponentName compName = typeid(T).name();
             
-	    if (mName2TypeMap.find(compName) == mName2TypeMap.end())
+            auto name2ArrayMapIter = mName2ArrayMap.find(compName);
+
+	    if (name2ArrayMapIter == mName2ArrayMap.end())
 	    {
                 DEV_ASSERT(
 	            false,
 		    "getComponentArray tried accessing array of unregistered "\
 		    "component type");
+		
 		return nullptr;
 	    }
-
-	    auto name2ArrayMapIter = mName2ArrayMap.find(compName);
 
             return std::static_pointer_cast<ComponentArray<T>>(
 	        name2ArrayMapIter->second);

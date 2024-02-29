@@ -19,7 +19,7 @@ namespace dragonbreath
 	    "same entity again");
     }
     // ------------------------------------------------------------------------
-    void System::entityDestroyed(Entity entity)
+    void System::entityUnassigned(Entity entity)
     {
         auto eraseResult = mEntities.erase(entity);
 

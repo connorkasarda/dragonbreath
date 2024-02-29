@@ -1,0 +1,18 @@
+I haven't logged any updates in a while but I think good progress has been made
+with the ECS. Shared pointers are making more sense now. I also decided to make
+sure that I could "my way" instead of just being a copycat when going through
+tutorials online -- I learn much better this way and I'm sure others do too. 
+It's uncomfortable when you try to figure it out on your own instead of just
+saving time by copying another coder's approach. However, this needs to be
+overcome and it's a hurdle all of us need to jump over.
+
+With every day, I feel that hurdle is getting smaller. Sometimes, I still find
+myself searching for answers online. To overcome this, I instead try to learn
+the code and find the documentation for the functions. This makes me feel more
+confident in my abilities and I honestly think my coding is improving.
+
+Next, I will need to create some sort of "captain" or "commander" class that
+has and performs the entities, systems, and components. I, personally, like
+having the hierarchy approach. You need to make sure the captain knows what
+they are doing though. But when they are effective in their commands, commands
+can be carried out well and efficiently.

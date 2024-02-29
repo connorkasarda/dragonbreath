@@ -11,12 +11,22 @@
 
 namespace dragonbreath
 {
+    /**
+     * @brief Type alias for the name of a system
+     */
+    using SystemName = const char *;
+	
+    /**
+     * @brief The base class for all systems
+     */
     class System
     {
-    public:
+    protected:
         /**
 	 * @brief Inserts entity when signature matches this system
-	 * 
+	 *
+	 * Helper function for adding entity to the system.
+	 *
 	 * @param entity Entity assigned to system
 	 */
 	void entityAssigned(Entity entity);
@@ -24,10 +34,12 @@ namespace dragonbreath
 	/**
 	 * @brief Removes entity when entity is deleted
 	 *
+	 * Helper function for removing entity when destroyed.
+	 *
 	 * @param entity Entity that was destroyed
 	 */
-	void entityDestroyed(Entity entity);
-    protected:
+	void entityUnassigned(Entity entity);
+
 	/**
 	 * @brief Entities that system affects
 	 *
