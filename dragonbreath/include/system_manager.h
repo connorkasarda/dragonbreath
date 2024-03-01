@@ -72,7 +72,7 @@ namespace dragonbreath
 	    {
 	        auto const& system = nameAndSystem.second;
                 
-                system.entityDestroyed(entity);	
+                system->entityUnassigned(entity);	
 	    }
 	}
 
