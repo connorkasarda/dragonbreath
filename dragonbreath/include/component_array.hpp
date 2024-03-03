@@ -6,8 +6,8 @@
  * @date 2024-02-01
  */
 
-#ifndef COMPONENT_ARRAY_H
-#define COMPONENT_ARRAY_H
+#ifndef COMPONENT_ARRAY_HPP
+#define COMPONENT_ARRAY_HPP
 
 #include <utility>
 #include <array>
@@ -51,10 +51,7 @@ namespace dragonbreath
 	/**
 	 * @brief Constructor
 	 */
-	ComponentArray()
-	{
-            
-	}
+	ComponentArray() = default;
 
         /**
 	 * @brief Inserts component data for target entity
@@ -199,4 +196,4 @@ namespace dragonbreath
     }; // class ComponentArray
 } // namespace dragonbreath
 
-#endif // COMPONENT_ARRAY_H
+#endif // COMPONENT_ARRAY_HPP

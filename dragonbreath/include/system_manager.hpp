@@ -1,14 +1,19 @@
 /**
- * @file system_manager.h
+ * @file system_manager.hpp
  * @brief Coordinates and manages all of the systems in the ECS
  *
  * @author Connor Kasarda
  * @date 2024-02-26
  */
 
+#ifndef SYSTEM_MANAGER_HPP
+#define SYSTEM_MANAGER_HPP
+
 #include <memory>
 #include <unordered_map>
+#include "debug.h"
 #include "system.h"
+#include "entity.h"
 #include "signature.h"
 
 namespace dragonbreath
@@ -66,49 +71,12 @@ namespace dragonbreath
 	/**
 	 * @brief Triggered when an entity is destroyed
 	 */
-        void entityDestroyed()
-	{
-            for (auto const& nameAndSystem : mName2SystemMap)
-	    {
-	        auto const& system = nameAndSystem.second;
-                
-                system->entityUnassigned(entity);	
-	    }
-	}
+        void entityDestroyed(Entity entity);
 
 	/**
 	 * @brief Triggered when component added to entity due to new component
 	 */
-	void entitySignatureChanged(Entity entity, Signature signature)
-	{
-            for (auto const& nameAndSystem : mName2SystemMap)
-	    {
-                auto const& name = nameAndSystem.first;
-		auto const& system = nameAndSystem.second;
-
-		auto name2SignatureMapIter = mName2SignatureMap.find(name);
-                if (name2SignatureMapIter == mName2SignatureMap.end())
-		{
-                    DEV_ASSERT(false, "entitySignatureChanged attempted "\
-		        "accessing system signature that wasn't set for "\
-		    	"system " + name);
-                    
-		    continue;
-		}
-
-		auto const& systemSignature = name2SignatureMapIter->second;
-
-		// Use of & bit operation to quickly determine if match
-                if ((signature & systemSignature) == systemSignature)
-		{
-                    system->entityAssigned(entity);
-		}
-		else
-		{
-                    system->entityUnassigned(entity);
-		}
-	    }
-	}
+	void entitySignatureChanged(Entity entity, Signature signature);
     private:
 	/**
 	 * @brief Mapping from the system name to the signature
@@ -122,3 +90,5 @@ namespace dragonbreath
             mName2SystemMap {};
     }; // class SystemManager
 } // namespace dragonbreath
+
+#endif // SYSTEM_MANAGER_HPP

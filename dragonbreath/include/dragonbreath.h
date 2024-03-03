@@ -14,11 +14,14 @@
 
 #include "debug.h"
 #include "entity.h"
-#include "component.h"
-#include "signature.h"
 #include "entity_manager.h"
+#include "signature.h"
+#include "component.h"
 #include "component_array.hpp"
 #include "component_manager.hpp"
+#include "system.h"
+#include "system_manager.hpp"
+#include "commander.hpp"
 // more to come ...
 
 #endif // DRAGONBREATH_H
