@@ -6,8 +6,8 @@
  * @date 2024-02-07
  */
 
-#ifndef COMPONENT_MANAGER_H
-#define COMPONENT_MANAGER_H
+#ifndef COMPONENT_MANAGER_HPP
+#define COMPONENT_MANAGER_HPP
 
 #include <memory>
 #include <unordered_map>
@@ -15,6 +15,9 @@
 
 namespace dragonbreath
 {
+    /**
+     * @brief Manages all of the registered components of the ECS
+     */
     class ComponentManager
     {
     public:
@@ -40,7 +43,7 @@ namespace dragonbreath
 	 * use here is okay.
 	 */
         template<typename T>
-	void registerComponentType()
+	void registerComponent()
 	{
 	    // Typically, want to avoid typeid usage but output does not need
 	    // to be human readable so its use is acceptable here.
@@ -154,4 +157,4 @@ namespace dragonbreath
     }; // class ComponentManager
 } // namespace dragonbreath
 
-#endif // COMPONENT_MANAGER_H
+#endif // COMPONENT_MANAGER_HPP

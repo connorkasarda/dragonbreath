@@ -1,0 +1,4 @@
+Today consisted of code cleanup. However, I need to clarify when to implement
+functions within the header file or the source file if it is a template class.
+I know that if T is used directly by the function then it has to be implemented
+within the header file. Yet, there are edge cases I should investigate.

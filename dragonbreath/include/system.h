@@ -6,6 +6,9 @@
  * @date 2024-02-23
  */
 
+#ifndef SYSTEM_H
+#define SYSTEM_H
+
 #include <set>
 #include "entity.h"
 
@@ -21,7 +24,7 @@ namespace dragonbreath
      */
     class System
     {
-    protected:
+    public:
         /**
 	 * @brief Inserts entity when signature matches this system
 	 *
@@ -39,7 +42,7 @@ namespace dragonbreath
 	 * @param entity Entity that was destroyed
 	 */
 	void entityUnassigned(Entity entity);
-
+    protected:
 	/**
 	 * @brief Entities that system affects
 	 *
@@ -51,3 +54,5 @@ namespace dragonbreath
         std::set<Entity> mEntities;
     }; // class System
 } // namespace dragonbreath
+
+#endif
