@@ -26,8 +26,7 @@ set(APP_SOURCES
     source/main.cpp
     source/debug.cpp
     source/entity_manager.cpp
-    source/system.cpp
-    source/system_manager.cpp)
+    source/system.cpp)
 
 # Create the Dragonbreath library
 add_library(dragonbreath_lib ${APP_SOURCES})

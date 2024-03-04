@@ -1,17 +1,17 @@
 /**
- * @file component_manager.hpp
+ * @file component_manager.h
  * @brief Manages components with respect to component arrays
  *
  * @author Connor Kasarda
  * @date 2024-02-07
  */
 
-#ifndef COMPONENT_MANAGER_HPP
-#define COMPONENT_MANAGER_HPP
+#ifndef COMPONENT_MANAGER_H
+#define COMPONENT_MANAGER_H
 
 #include <memory>
 #include <unordered_map>
-#include "component_array.hpp"
+#include "component_array.h"
 
 namespace dragonbreath
 {
@@ -24,15 +24,12 @@ namespace dragonbreath
         /**
 	 * @brief Constructor
 	 */
-	ComponentManager() : mComponentTypeIDAssigner(0)
-	{
-
-	}
+	ComponentManager();
 
 	/**
 	 * @brief Destructor
 	 */
-	~ComponentManager() = default;
+	~ComponentManager();
 
 	/**
 	 * @brief Registers a new component type
@@ -43,28 +40,7 @@ namespace dragonbreath
 	 * use here is okay.
 	 */
         template<typename T>
-	void registerComponent()
-	{
-	    // Typically, want to avoid typeid usage but output does not need
-	    // to be human readable so its use is acceptable here.
-            ComponentName regdCompName = typeid(T).name();
-            
-	    if (mName2TypeMap.find(regdCompName) != mName2TypeMap.end())
-	    {
-                DEV_ASSERT(
-	            false,
-		    "registerComponent tried adding existing component");
-		return;
-	    }
-
-            mName2TypeMap.insert(
-		std::make_pair(regdCompName, mComponentTypeIDAssigner)); 
-            mName2ArrayMap.insert(
-                std::make_pair(
-		    regdCompName, std::make_shared<ComponentArray<T>>()));
-
-	    ++mComponentTypeIDAssigner;
-	}
+	void registerComponent();
 
 	/**
 	 * @brief Adds component to the appropriate component array
@@ -73,10 +49,7 @@ namespace dragonbreath
 	 * @param component Component to add to component array
 	 */
 	template<typename T>
-        void addComponent(Entity entity, T component)
-	{
-            getComponentArray<T>()->insertData(entity, component);
-	}
+        void addComponent(Entity entity, T component);
 
 	/**
 	 * @brief Removes component from the appropriate component array
@@ -84,25 +57,14 @@ namespace dragonbreath
 	 * @param component Component to be removed
 	 */
 	template<typename T>
-	void removeComponent(T component)
-	{
-            getComponentArray<T>()->removeData(component);
-	}
+	void removeComponent(T component);
 
 	/**
 	 * @brief Called whenever an entity is destroyed to trigger removal
 	 *
 	 * @param entity Entity that was destroyed
 	 */
-	void entityDestroyed(Entity entity)
-	{
-            for (auto const& pair : mName2ArrayMap)
-	    {
-                auto const& componentArray = pair.second;
-
-		componentArray->entityDestroyed(entity);
-	    }
-	}
+	void entityDestroyed(Entity entity);
     private:
         /**
 	 * @brief Mapping from component type name to the component type
@@ -135,26 +97,11 @@ namespace dragonbreath
 	 * @return shared pointer to the specialized component array
 	 */
 	template<typename T>
-	std::shared_ptr<ComponentArray<T>> getComponentArray() const
-	{
-            ComponentName compName = typeid(T).name();
-            
-            auto name2ArrayMapIter = mName2ArrayMap.find(compName);
-
-	    if (name2ArrayMapIter == mName2ArrayMap.end())
-	    {
-                DEV_ASSERT(
-	            false,
-		    "getComponentArray tried accessing array of unregistered "\
-		    "component type");
-		
-		return nullptr;
-	    }
-
-            return std::static_pointer_cast<ComponentArray<T>>(
-	        name2ArrayMapIter->second);
-	}	
+	std::shared_ptr<ComponentArray<T>> getComponentArray() const;
     }; // class ComponentManager
 } // namespace dragonbreath
 
-#endif // COMPONENT_MANAGER_HPP
+// Reveal implementations here
+#include "component_manager.tpp"
+
+#endif // COMPONENT_MANAGER_H

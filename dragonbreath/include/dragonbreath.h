@@ -17,11 +17,11 @@
 #include "entity_manager.h"
 #include "signature.h"
 #include "component.h"
-#include "component_array.hpp"
-#include "component_manager.hpp"
+#include "component_array.h"
+#include "component_manager.h"
 #include "system.h"
-#include "system_manager.hpp"
-#include "commander.hpp"
+#include "system_manager.h"
+#include "commander.h"
 // more to come ...
 
 #endif // DRAGONBREATH_H

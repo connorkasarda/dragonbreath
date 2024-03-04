@@ -1,13 +1,13 @@
 /**
- * @file system_manager.hpp
+ * @file system_manager.h
  * @brief Coordinates and manages all of the systems in the ECS
  *
  * @author Connor Kasarda
  * @date 2024-02-26
  */
 
-#ifndef SYSTEM_MANAGER_HPP
-#define SYSTEM_MANAGER_HPP
+#ifndef SYSTEM_MANAGER_H
+#define SYSTEM_MANAGER_H
 
 #include <memory>
 #include <unordered_map>
@@ -28,24 +28,7 @@ namespace dragonbreath
 	 * @brief Introduces new system type to manager and registers it
 	 */
         template<typename T>
-        std::shared_ptr<T> registerSystem()
-	{
-            SystemName systemName = typeid(T).name();
-
-	    auto system = std::shared_ptr<T>();
-	    auto result = mName2SystemMap.insert(
-	        std::make_pair(systemName, system));
-	    
-            if (!result.second)
-	    {
-                DEV_ASSERT(false, "registerSystem attempted registering "\
-		    "same system again");
-		
-	        return nullptr;
-	    }
-
-	    return system;
-	}	
+        std::shared_ptr<T> registerSystem();
 
 	/**
 	 * @brief Sets the signature for a given system
@@ -53,20 +36,7 @@ namespace dragonbreath
 	 * @param signature Signature of the system for comparisons
 	 */
 	template<typename T>
-	void registerSystemSignature(Signature signature)
-	{
-            SystemName systemName = typeid(T).name();
-            
-	    if (mName2SystemMap.find(systemName) == mName2SystemMap.end())
-	    {
-                DEV_ASSERT(false, "registerSystemSignature attempted setting "\
-		    "signature for unregistered system");
-
-		return;
-	    }
-
-	    mName2SignatureMap.insert(std::make_pair(systemName, signature));
-	}
+	void registerSystemSignature(Signature signature);
 
 	/**
 	 * @brief Triggered when an entity is destroyed
@@ -91,4 +61,7 @@ namespace dragonbreath
     }; // class SystemManager
 } // namespace dragonbreath
 
-#endif // SYSTEM_MANAGER_HPP
+// Reveal implementations here
+#include "system_manager.tpp"
+
+#endif // SYSTEM_MANAGER_H

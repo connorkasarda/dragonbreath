@@ -1,19 +1,19 @@
 /**
- * @file commander.hpp
+ * @file commander.h
  * @brief The captain of the ECS that gives commands to all of the managers
  *
  * @author Connor Kasarda
  * @date 2024-03-01
  */
 
-#ifndef COMMANDER_HPP
-#define COMMANDER_HPP
+#ifndef COMMANDER_H
+#define COMMANDER_H
 
 #include <memory>
 #include "entity.h"
 #include "entity_manager.h"
-#include "component_manager.hpp"
-#include "system_manager.hpp"
+#include "component_manager.h"
+#include "system_manager.h"
 
 namespace dragonbreath
 {
@@ -57,4 +57,4 @@ namespace dragonbreath
     }; // class Commander
 } // namespace dragonbreath
 
-#endif // COMMANDER_HPP
+#endif // COMMANDER_H
