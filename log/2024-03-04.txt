@@ -1,0 +1,15 @@
+.tpp files. These file types, new to me in C++ programming, were the highlight
+of my education today. Initially, I kept all implementations for template
+related code within the .h file. At one point, I would even change the type of 
+these files to .hpp to recognize the fact that implementations were present.
+However, I realized this to be insufficient and perhaps even counterproductive
+to the work of the compiler.
+
+It is my vague understanding that without using .tpp files to store template
+implementations, the compiler will have a tougher job. So, what I do now is put
+template implementations in .tpp files and regular implementations in .cpp 
+files for now.
+
+I feel very close to finishing the basic groundwork for this project. Yet, it's
+only the first step in a grander scheme; my plan is to make an ECS for all 
+kinds of NLP-based games.
