@@ -13,20 +13,17 @@ project(
     DESCRIPTION "Entity Component System project"
     LANGUAGES CXX)
 
-# If Doxygen included, generate docs
-find_package(Doxygen)
-if(Doxygen_FOUND)
-    add_subdirectory(docs)
-else()
-    message(STATUS "Doxygen not found, not building docs")
-endif()
-
 # Add the application source files
 set(APP_SOURCES
     source/main.cpp
     source/debug.cpp
     source/entity_manager.cpp
-    source/system.cpp)
+    source/system.cpp
+    source/component_array.tpp
+    source/component_manager.tpp
+    source/component_manager.cpp
+    source/system_manager.tpp
+    source/system_manager.cpp)
 
 # Create the Dragonbreath library
 add_library(dragonbreath_lib ${APP_SOURCES})

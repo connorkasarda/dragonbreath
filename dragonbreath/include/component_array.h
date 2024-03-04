@@ -128,7 +128,4 @@ namespace dragonbreath
     }; // class ComponentArray
 } // namespace dragonbreath
 
-// Reveal implementation of template class members in this file
-#include "component_array.tpp"
-
 #endif // COMPONENT_ARRAY_H

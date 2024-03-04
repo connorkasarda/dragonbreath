@@ -9,12 +9,10 @@
 #ifndef COMPONENT_MANAGER_TPP
 #define COMPONENT_MANAGER_TPP
 
+#include "component_manager.h"
+
 namespace dragonbreath
 {
-    ComponentManager::ComponentManager() : mComponentTypeIDAssigner(0) {}
-    // ------------------------------------------------------------------------
-    ComponentManager::~ComponentManager() = default;
-    // ------------------------------------------------------------------------
     template<typename T>
     void ComponentManager::registerComponent()
     {
@@ -49,16 +47,6 @@ namespace dragonbreath
     void ComponentManager::removeComponent(T component)
     {
         getComponentArray<T>()->removeData(component);
-    }
-    // ------------------------------------------------------------------------
-    void ComponentManager::entityDestroyed(Entity entity)
-    {
-        for (auto const& pair : mName2ArrayMap)
-	{
-            auto const& componentArray = pair.second;
-
-	    componentArray->entityDestroyed(entity);
-	}
     }
     // ------------------------------------------------------------------------
     template<typename T>

@@ -11,6 +11,7 @@
 
 #include <memory>
 #include <unordered_map>
+#include "component.h"
 #include "component_array.h"
 
 namespace dragonbreath
@@ -100,8 +101,5 @@ namespace dragonbreath
 	std::shared_ptr<ComponentArray<T>> getComponentArray() const;
     }; // class ComponentManager
 } // namespace dragonbreath
-
-// Reveal implementations here
-#include "component_manager.tpp"
 
 #endif // COMPONENT_MANAGER_H

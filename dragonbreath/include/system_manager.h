@@ -61,7 +61,4 @@ namespace dragonbreath
     }; // class SystemManager
 } // namespace dragonbreath
 
-// Reveal implementations here
-#include "system_manager.tpp"
-
 #endif // SYSTEM_MANAGER_H
