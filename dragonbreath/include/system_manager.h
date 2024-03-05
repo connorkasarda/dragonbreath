@@ -36,7 +36,7 @@ namespace dragonbreath
 	 * @param signature Signature of the system for comparisons
 	 */
 	template<typename T>
-	void registerSystemSignature(Signature signature);
+	void setSystemSignature(Signature signature);
 
 	/**
 	 * @brief Triggered when an entity is destroyed

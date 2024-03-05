@@ -34,7 +34,7 @@ namespace dragonbreath
     }
     // ------------------------------------------------------------------------
     template<typename T>
-    void SystemManager::registerSystemSignature(Signature signature)
+    void SystemManager::setSystemSignature(Signature signature)
     {
         SystemName systemName = typeid(T).name();
             
