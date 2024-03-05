@@ -39,8 +39,10 @@ namespace dragonbreath
 
         /**
          * @brief Destroys an entity via entity manager
+         *
+         * @param entity The entity to destroy
          */
-        void destroyEntity();
+        void destroyEntity(Entity entity);
 
         /**
          * @brief Registers a new component type
@@ -63,7 +65,7 @@ namespace dragonbreath
          * @param component The component to be removed
          */
         template<typename T>
-        void removeComponent(T component);
+        void removeComponent(Entity entity);
 
         /**
          * @brief Retrieves the component

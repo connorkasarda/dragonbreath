@@ -44,9 +44,9 @@ namespace dragonbreath
     }
     // ------------------------------------------------------------------------
     template<typename T>
-    void ComponentManager::removeComponent(T component)
+    void ComponentManager::removeComponent(Entity entity)
     {
-        getComponentArray<T>()->removeData(component);
+        getComponentArray<T>()->removeData(entity);
     }
     // ------------------------------------------------------------------------
     template<typename T>
