@@ -50,6 +50,29 @@ namespace dragonbreath
     }
     // ------------------------------------------------------------------------
     template<typename T>
+    const T& ComponentManager::getComponent(Entity entity) const
+    {
+        return getComponentArray<T>()->getData(entity);
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
+    ComponentType ComponentManager::getComponentType() const
+    {
+        ComponentType compName = typeid(T).name();
+
+        auto name2TypeMapIter = mName2TypeMan.find(compName);
+        if (name2TypeMapIter == mName2TypeMap.end())
+        {
+            DEV_ASSERT(false, "getComponentType tried accessing component "\
+                "type that was not registered yet");
+
+            return kInvalidComponentType;
+        }
+
+        return mComponentTypes[typeName];
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
     std::shared_ptr<ComponentArray<T>>
         ComponentManager::getComponentArray() const
     {

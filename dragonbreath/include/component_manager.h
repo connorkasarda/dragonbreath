@@ -60,6 +60,22 @@ namespace dragonbreath
 	template<typename T>
 	void removeComponent(T component);
 
+        /**
+         * @brief Retrieves the target component from component array
+         *
+         * @param entity The entity component is attached to
+         */
+        template<typename T>
+        const T& getComponent(Entity entity) const;
+        
+        /**
+         * @brief Retrieves the component type
+         *
+         * @return The component type
+         */
+        template<typename T>
+        ComponentType getComponentType() const;
+
 	/**
 	 * @brief Called whenever an entity is destroyed to trigger removal
 	 *
