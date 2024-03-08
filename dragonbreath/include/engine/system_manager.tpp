@@ -9,8 +9,6 @@
 #ifndef SYSTEM_MANAGER_TPP
 #define SYSTEM_MANAGER_TPP
 
-#include "system_manager.h"
-
 namespace dragonbreath
 {
     template<typename T>

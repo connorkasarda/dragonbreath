@@ -128,4 +128,6 @@ namespace dragonbreath
     }; // class ComponentArray
 } // namespace dragonbreath
 
+#include "component_array.tpp"
+
 #endif // COMPONENT_ARRAY_H

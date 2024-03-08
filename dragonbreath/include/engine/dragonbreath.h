@@ -12,6 +12,7 @@
 #ifndef DRAGONBREATH_H
 #define DRAGONBREATH_H
 
+// Core
 #include "debug.h"
 #include "entity.h"
 #include "entity_manager.h"
@@ -22,6 +23,11 @@
 #include "system.h"
 #include "system_manager.h"
 #include "commander.h"
-// more to come ...
+
+// Components
+#include "transform.h"
+
+// Systems
+#include "physics.h"
 
 #endif // DRAGONBREATH_H

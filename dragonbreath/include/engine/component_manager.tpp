@@ -9,8 +9,6 @@
 #ifndef COMPONENT_MANAGER_TPP
 #define COMPONENT_MANAGER_TPP
 
-#include "component_manager.h"
-
 namespace dragonbreath
 {
     template<typename T>
@@ -58,9 +56,9 @@ namespace dragonbreath
     template<typename T>
     ComponentType ComponentManager::getComponentType() const
     {
-        ComponentType compName = typeid(T).name();
+        ComponentName compName = typeid(T).name();
 
-        auto name2TypeMapIter = mName2TypeMan.find(compName);
+        auto name2TypeMapIter = mName2TypeMap.find(compName);
         if (name2TypeMapIter == mName2TypeMap.end())
         {
             DEV_ASSERT(false, "getComponentType tried accessing component "\
@@ -69,7 +67,7 @@ namespace dragonbreath
             return kInvalidComponentType;
         }
 
-        return mComponentTypes[typeName];
+        return name2TypeMapIter->second;
     }
     // ------------------------------------------------------------------------
     template<typename T>

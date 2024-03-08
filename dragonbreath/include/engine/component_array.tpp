@@ -9,8 +9,6 @@
 #ifndef COMPONENT_ARRAY_TPP
 #define COMPONENT_ARRAY_TPP
 
-#include "component_array.h"
-
 namespace dragonbreath
 {
     template<typename T>
