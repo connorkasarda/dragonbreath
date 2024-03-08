@@ -113,4 +113,6 @@ namespace dragonbreath
     }; // class Commander
 } // namespace dragonbreath
 
+#include "commander.tpp"
+
 #endif // COMMANDER_H

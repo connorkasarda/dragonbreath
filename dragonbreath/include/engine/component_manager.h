@@ -58,7 +58,7 @@ namespace dragonbreath
 	 * @param component Component to be removed
 	 */
 	template<typename T>
-	void removeComponent(T component);
+	void removeComponent(Entity entity);
 
         /**
          * @brief Retrieves the target component from component array
@@ -117,5 +117,7 @@ namespace dragonbreath
 	std::shared_ptr<ComponentArray<T>> getComponentArray() const;
     }; // class ComponentManager
 } // namespace dragonbreath
+
+#include "component_manager.tpp"
 
 #endif // COMPONENT_MANAGER_H

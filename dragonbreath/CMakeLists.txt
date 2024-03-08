@@ -15,21 +15,28 @@ project(
 
 # Add the application source files
 set(APP_SOURCES
-    source/main.cpp
-    source/debug.cpp
-    source/entity_manager.cpp
-    source/system.cpp
-    source/component_array.tpp
-    source/component_manager.tpp
-    source/component_manager.cpp
-    source/system_manager.tpp
-    source/system_manager.cpp)
+    source/engine/main.cpp
+    source/engine/debug.cpp
+    source/engine/entity_manager.cpp
+    source/engine/system.cpp
+    source/engine/component_manager.cpp
+    source/engine/system_manager.cpp
+    source/engine/commander.cpp
+    source/math/vector3.cpp)
 
 # Create the Dragonbreath library
 add_library(dragonbreath_lib ${APP_SOURCES})
-target_include_directories(dragonbreath_lib PUBLIC include)
+target_include_directories(dragonbreath_lib PUBLIC
+    include/engine
+    include/components
+    include/systems
+    include/math)
 
 # Build Dragonbreath executable
 add_executable(dragonbreath ${APP_SOURCES})
-target_include_directories(dragonbreath PRIVATE include)
+target_include_directories(dragonbreath PRIVATE
+    include/engine
+    include/components
+    include/systems
+    include/math)
 target_link_libraries(dragonbreath PRIVATE dragonbreath_lib)
