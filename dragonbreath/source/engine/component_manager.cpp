@@ -10,17 +10,20 @@
 
 namespace dragonbreath
 {
-    ComponentManager::ComponentManager() : mComponentTypeIDAssigner(0) {}
-    // ------------------------------------------------------------------------
-    ComponentManager::~ComponentManager() = default;
-    // ------------------------------------------------------------------------
-    void ComponentManager::entityDestroyed(Entity entity)
+    namespace engine
     {
-        for (auto const& pair : mName2ArrayMap)
+        ComponentManager::ComponentManager() : mComponentTypeIDAssigner(0) {}
+        // ------------------------------------------------------------------------
+        ComponentManager::~ComponentManager() = default;
+        // ------------------------------------------------------------------------
+        void ComponentManager::entityDestroyed(Entity entity)
         {
-            auto const& componentArray = pair.second;
+            for (auto const& pair : mName2ArrayMap)
+            {
+                auto const& componentArray = pair.second;
 
-            componentArray->entityDestroyed(entity);
+                componentArray->entityDestroyed(entity);
+            }
         }
-    }
+    } // namespace engine
 } // namespace dragonbreath

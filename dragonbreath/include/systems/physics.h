@@ -13,13 +13,21 @@
 
 namespace dragonbreath
 {
-    /**
-     * @brief The physics system class
-     */
-    class Physics : public System
+    namespace systems
     {
-        // TODO init and update functions
-    };
+        /**
+         * @brief The physics system class
+         *
+         * Plays entities that have transforms, are affected by gravity, are
+         * designated as rigid bodies, and so on. Will need to initialize the
+         * objects and keep them updated every frame. Inherits from System to
+         * ensure Physics has a set of entities to orchestrate.
+         */
+        class Physics : public engine::System
+        {
+            
+        };
+    } // namespace systems
 } // namespace dragonbreath
 
 #endif // namespace dragonbreath

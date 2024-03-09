@@ -17,32 +17,35 @@
 
 namespace dragonbreath
 {
-    /**
-     * @brief Defines an entity as an unsigned integer within 32 bit range
-     *
-     * ECS currently supports a 16 bit range for indexing game objects.
-     * However, game objects with 8, 32, and 64 bit sizing may be added later
-     * to add flexibility. Thus, depending on resources available, performance
-     * power, or just preference, the programmer using this package can define
-     * the maximum number of game objects.
-     */
-    using Entity = std::int16_t;
+    namespace engine
+    {
+        /**
+         * @brief Defines an entity as an unsigned integer within 32 bit range
+         *
+         * ECS currently supports a 16 bit range for indexing game objects.
+         * However, game objects with 8, 32, and 64 bit sizing may be added later
+         * to add flexibility. Thus, depending on resources available, performance
+         * power, or just preference, the programmer using this package can define
+         * the maximum number of game objects.
+         */
+        using Entity = std::int16_t;
 
-    /**
-     * @brief Sets the maximum limit for number of entities in simulation
-     *
-     * The number of max entities is defaulted to max of signed 16 bit
-     * indexing range defined for game objects. Of course, this could be varied
-     * in the future if the type alias Entity is defined with 8, 32, or 64 bits
-     * instead of the default 16 bit range.
-     */
-    constexpr std::int16_t kMaxEntities =
-        std::numeric_limits<std::int16_t>::max();
+        /**
+         * @brief Sets the maximum limit for number of entities in simulation
+         *
+         * The number of max entities is defaulted to max of signed 16 bit
+         * indexing range defined for game objects. Of course, this could be varied
+         * in the future if the type alias Entity is defined with 8, 32, or 64 bits
+         * instead of the default 16 bit range.
+         */
+        constexpr std::int16_t kMaxEntities =
+            std::numeric_limits<std::int16_t>::max();
 
-    /**
-     * @brief default value returned when Entity cannot be spawned
-     */
-    constexpr Entity kInvalidEntity = -1;
+        /**
+         * @brief default value returned when Entity cannot be spawned
+         */
+        constexpr Entity kInvalidEntity = -1;
+    } // namespace engine
 } // namespace dragonbreath
 
 #endif // ENTITY_H

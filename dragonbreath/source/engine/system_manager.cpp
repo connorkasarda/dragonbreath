@@ -6,48 +6,52 @@
  * @date 2024-03-04
  */
 
+#include "debug.h"
 #include "system_manager.h"
 
 namespace dragonbreath
 {
-    void SystemManager::entityDestroyed(Entity entity)
+    namespace engine
     {
-        for (auto const& nameAndSystem : mName2SystemMap)
-	{
+        void SystemManager::entityDestroyed(Entity entity)
+        {
+            for (auto const& nameAndSystem : mName2SystemMap)
+        {
+                auto const& system = nameAndSystem.second;
+
+            system->entityUnassigned(entity);
+        }
+        }
+        // ------------------------------------------------------------------------ 
+        void SystemManager::entitySignatureChanged(Entity entity,
+            Signature signature)
+        {
+            for (auto const& nameAndSystem : mName2SystemMap)
+        {
+            auto const& name = nameAndSystem.first;
             auto const& system = nameAndSystem.second;
 
-	    system->entityUnassigned(entity);
-	}
-    }
-    // ------------------------------------------------------------------------ 
-    void SystemManager::entitySignatureChanged(Entity entity,
-        Signature signature)
-    {
-        for (auto const& nameAndSystem : mName2SystemMap)
-	{
-	    auto const& name = nameAndSystem.first;
-	    auto const& system = nameAndSystem.second;
+            auto name2SignatureMapIter = mName2SignatureMap.find(name);
+            if (name2SignatureMapIter == mName2SignatureMap.end())
+            {
+                    DEV_ASSERT(false, "entitySignatureChanged attempted "\
+                        "accessing system signature that wasn't set for system");
 
-	    auto name2SignatureMapIter = mName2SignatureMap.find(name);
-	    if (name2SignatureMapIter == mName2SignatureMap.end())
-	    {
-                DEV_ASSERT(false, "entitySignatureChanged attempted "\
-                    "accessing system signature that wasn't set for system");
+            continue;
+            }
 
-		continue;
-	    }
+            auto const& systemSignature = name2SignatureMapIter->second;
 
-	    auto const& systemSignature = name2SignatureMapIter->second;
-
-	    // Use of & bit operation to quickly determine if match
-	    if ((signature & systemSignature) == systemSignature)
-	    {
-	        system->entityAssigned(entity);
-	    }
-	    else
-	    {
-                system->entityUnassigned(entity);
-	    }
+            // Use of & bit operation to quickly determine if match
+            if ((signature & systemSignature) == systemSignature)
+            {
+                system->entityAssigned(entity);
+            }
+            else
+            {
+                    system->entityUnassigned(entity);
+            }
+            }
         }
-    }
+    } // namespace engine
 } // namespace dragonbreath

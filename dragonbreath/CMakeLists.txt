@@ -9,12 +9,21 @@ endif()
 # Sets the dragonbreath project
 project(
     dragonbreath
-    VERSION 2024.1.30
+    VERSION 2024.03.09
     DESCRIPTION "Entity Component System project"
     LANGUAGES CXX)
 
+# Add the application include directories
+set(INCLUDE_DIRS
+    include
+    include/engine
+    include/math
+    include/components
+    include/systems)
+    # more to come ...
+
 # Add the application source files
-set(APP_SOURCES
+set(SOURCE_FILES
     source/engine/main.cpp
     source/engine/debug.cpp
     source/engine/entity_manager.cpp
@@ -23,20 +32,13 @@ set(APP_SOURCES
     source/engine/system_manager.cpp
     source/engine/commander.cpp
     source/math/vector3.cpp)
+    # More to come ...
 
 # Create the Dragonbreath library
-add_library(dragonbreath_lib ${APP_SOURCES})
-target_include_directories(dragonbreath_lib PUBLIC
-    include/engine
-    include/components
-    include/systems
-    include/math)
+add_library(dragonbreath_lib ${SOURCE_FILES})
+target_include_directories(dragonbreath_lib PUBLIC ${INCLUDE_DIRS})
 
 # Build Dragonbreath executable
-add_executable(dragonbreath ${APP_SOURCES})
-target_include_directories(dragonbreath PRIVATE
-    include/engine
-    include/components
-    include/systems
-    include/math)
+add_executable(dragonbreath ${SOURCE_FILES})
+target_include_directories(dragonbreath PRIVATE ${INCLUDE_DIRS})
 target_link_libraries(dragonbreath PRIVATE dragonbreath_lib)

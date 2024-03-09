@@ -10,22 +10,25 @@
 
 namespace dragonbreath
 {
-    void Commander::Init()
+    namespace engine
     {
-        mEntityManager = std::make_unique<EntityManager>();
-        mComponentManager = std::make_unique<ComponentManager>();
-        mSystemManager = std::make_unique<SystemManager>();
-    }
-    // ------------------------------------------------------------------------
-    Entity Commander::createEntity()
-    {
-        return mEntityManager->spawnEntity();
-    }
-    // ------------------------------------------------------------------------
-    void Commander::destroyEntity(Entity entity)
-    {
-        mEntityManager->despawnEntity(entity);
-        mComponentManager->entityDestroyed(entity);
-        mSystemManager->entityDestroyed(entity);
-    }
+        void Commander::init()
+        {
+            mEntityManager = std::make_unique<EntityManager>();
+            mComponentManager = std::make_unique<ComponentManager>();
+            mSystemManager = std::make_unique<SystemManager>();
+        }
+        // ------------------------------------------------------------------------
+        Entity Commander::createEntity()
+        {
+            return mEntityManager->spawnEntity();
+        }
+        // ------------------------------------------------------------------------
+        void Commander::destroyEntity(Entity entity)
+        {
+            mEntityManager->despawnEntity(entity);
+            mComponentManager->entityDestroyed(entity);
+            mSystemManager->entityDestroyed(entity);
+        }
+    } // namespace engine
 } // namespace dragonbreath

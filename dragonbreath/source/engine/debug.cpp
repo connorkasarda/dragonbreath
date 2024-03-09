@@ -12,16 +12,19 @@
 
 namespace dragonbreath
 {
-    /**
-     * @brief Called when dragon assert macro is engaged
-     */
-    void error(int line, const char* file, const char* format, ...)
+    namespace engine
     {
-        va_list args;
-        va_start(args, format);
-        std::fprintf(stderr, "[%s:%d] ", file, line);
-        std::vfprintf(stderr, format, args);
-        va_end(args);
-        std::fprintf(stderr, "\n");
-    }
+        /**
+         * @brief Called when dragon assert macro is engaged
+         */
+        void error(int line, const char* file, const char* format, ...)
+        {
+            va_list args;
+            va_start(args, format);
+            std::fprintf(stderr, "[%s:%d] ", file, line);
+            std::vfprintf(stderr, format, args);
+            va_end(args);
+            std::fprintf(stderr, "\n");
+        }
+    } // namespace engine
 } // namespace dragonbreath
