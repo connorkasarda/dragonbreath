@@ -24,7 +24,7 @@ set(INCLUDE_DIRS
 
 # Add the application source files
 set(SOURCE_FILES
-    source/engine/main.cpp
+    source/dragonbreath.cpp
     source/engine/debug.cpp
     source/engine/entity_manager.cpp
     source/engine/system.cpp

@@ -1,5 +1,5 @@
 /**
- * @file main.cpp
+ * @file dragonbreath.cpp
  * @brief The dragonbreath main program
  *
  * Runs dragonbreath ECS engine code.
