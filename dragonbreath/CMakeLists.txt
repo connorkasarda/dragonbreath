@@ -15,23 +15,23 @@ project(
 
 # Add the application include directories
 set(INCLUDE_DIRS
-    include
     include/engine
     include/math
     include/components
-    include/systems)
+    include/systems
+    include)
     # more to come ...
 
 # Add the application source files
 set(SOURCE_FILES
-    source/dragonbreath.cpp
     source/engine/debug.cpp
     source/engine/entity_manager.cpp
     source/engine/system.cpp
     source/engine/component_manager.cpp
     source/engine/system_manager.cpp
     source/engine/commander.cpp
-    source/math/vector3.cpp)
+    source/math/vector3.cpp
+    source/dragonbreath.cpp)
     # More to come ...
 
 # Create the Dragonbreath library
