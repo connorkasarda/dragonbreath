@@ -16,67 +16,64 @@
 
 namespace dragonbreath
 {
-    namespace engine
+    /**
+     * @brief The entity manager class that orchestrates a pool of entities
+     */
+    class EntityManager
     {
+    public:
         /**
-         * @brief The entity manager class that orchestrates a pool of entities
+         * @brief Constructor
+         *
+         * The pool of entities is populated first so that they are created
+         * and ready to go as needed.
          */
-        class EntityManager
-        {
-        public:
-            /**
-             * @brief Constructor
-             *
-             * The pool of entities is populated first so that they are created
-             * and ready to go as needed.
-             */
-            EntityManager();
+        EntityManager();
 
-            /**
-             * @brief Destructor
-             */
-            ~EntityManager();
+        /**
+         * @brief Destructor
+         */
+        ~EntityManager();
 
-            /**
-             * @brief Dequeues entity on standby and creates it
-             *
-             * @return entity The spawned entity
-             */
-            Entity spawnEntity();
+        /**
+         * @brief Dequeues entity on standby and creates it
+         *
+         * @return entity The spawned entity
+         */
+        Entity spawnEntity();
 
-            /**
-             * @brief Destroys alive entity and enqueues to pool
-             */
-            void despawnEntity(Entity entity);
+        /**
+         * @brief Destroys alive entity and enqueues to pool
+         */
+        void despawnEntity(Entity entity);
 
-            /**
-             * @brief Sets the signature for an entity
-             */
-            void setSignature(Entity entity, Signature signature);
+        /**
+         * @brief Sets the signature for an entity
+         */
+        void setSignature(Entity entity, Signature signature);
 
-            /**
-             * @brief Retrieves the signature of an entity
-             *
-             * @return signature The entity's signature
-             */
-            Signature getSignature(Entity entity) const;
-        private:
-            /**
-             * @brief Entities that are on standby
-             */
-            std::queue<Entity> entityPool {};
+        /**
+         * @brief Retrieves the signature of an entity
+         *
+         * @return signature The entity's signature
+         */
+        Signature getSignature(Entity entity) const;
+    private:
+        /**
+         * @brief Entities that are on standby
+         */
+        std::queue<Entity> entityPool {};
 
-            /**
-             * @brief The signatures for each entity
-             */
-            std::array<Signature, maxEntities> signatures {};
+        /**
+         * @brief The signatures for each entity
+         */
+        std::array<Signature, maxEntities> signatures {};
 
-            /**
-             * @brief The number of live entities
-             */
-            std::int16_t numEntitiesAlive {};
-        }; // class Entity Manager
-    } // namespace engine
+        /**
+         * @brief The number of live entities
+         */
+        std::int16_t numEntitiesAlive {};
+    }; // class Entity Manager
 } // namespace dragonbreath
 
 #endif // ENTITY_MANAGER_H

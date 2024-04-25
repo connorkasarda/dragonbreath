@@ -11,87 +11,84 @@
 
 namespace dragonbreath
 {
-    namespace engine
+    template<typename T>
+    void ComponentManager::registerComponent()
     {
-        template<typename T>
-        void ComponentManager::registerComponent()
-        {
-            // Typically, want to avoid typeid usage but output does not need
-            // to be human readable so its use is acceptable here.
-            ComponentName regdCompName = typeid(T).name();
-                
-            if (name2TypeMap.find(regdCompName) != name2TypeMap.end())
-            {
-                DEV_ASSERT(false, "registerComponent tried adding existing " \
-                    "component");
+        // Typically, want to avoid typeid usage but output does not need
+        // to be human readable so its use is acceptable here.
+        ComponentName regdCompName = typeid(T).name();
             
-               return;
-            }
-
-            name2TypeMap.insert(
-            std::make_pair(regdCompName, componentTypeIDAssigner)); 
-            name2ArrayMap.insert(
-                std::make_pair(
-            regdCompName, std::make_shared<ComponentArray<T>>()));
-
-            ++componentTypeIDAssigner;
-        }
-        // ------------------------------------------------------------------------
-        template<typename T>
-        void ComponentManager::addComponent(Entity entity, T component)
+        if (name2TypeMap.find(regdCompName) != name2TypeMap.end())
         {
-            getComponentArray<T>()->insertData(entity, component);
+            DEV_ASSERT(false, "registerComponent tried adding existing " \
+                "component");
+        
+           return;
         }
-        // ------------------------------------------------------------------------
-        template<typename T>
-        void ComponentManager::removeComponent(Entity entity)
+
+        name2TypeMap.insert(
+        std::make_pair(regdCompName, componentTypeIDAssigner)); 
+        name2ArrayMap.insert(
+            std::make_pair(
+        regdCompName, std::make_shared<ComponentArray<T>>()));
+
+        ++componentTypeIDAssigner;
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
+    void ComponentManager::addComponent(Entity entity, T component)
+    {
+        getComponentArray<T>()->insertData(entity, component);
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
+    void ComponentManager::removeComponent(Entity entity)
+    {
+        getComponentArray<T>()->removeData(entity);
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
+    const T& ComponentManager::getComponent(Entity entity) const
+    {
+        return getComponentArray<T>()->getData(entity);
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
+    ComponentType ComponentManager::getComponentType() const
+    {
+        ComponentName compName = typeid(T).name();
+
+        auto name2TypeMapIter = name2TypeMap.find(compName);
+        if (name2TypeMapIter == name2TypeMap.end())
         {
-            getComponentArray<T>()->removeData(entity);
+            DEV_ASSERT(false, "getComponentType tried accessing component " \
+                "type that was not registered yet");
+
+            return invalidComponentTypeFlag;
         }
-        // ------------------------------------------------------------------------
-        template<typename T>
-        const T& ComponentManager::getComponent(Entity entity) const
+
+        return name2TypeMapIter->second;
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
+    std::shared_ptr<ComponentArray<T>>
+        ComponentManager::getComponentArray() const
+    {
+        ComponentName compName = typeid(T).name();
+        
+        auto name2ArrayMapIter = name2ArrayMap.find(compName);
+
+        if (name2ArrayMapIter == name2ArrayMap.end())
         {
-            return getComponentArray<T>()->getData(entity);
+            DEV_ASSERT(false, "getComponentArray tried accessing array " \
+                "of unregistered component type");
+        
+            return nullptr;
         }
-        // ------------------------------------------------------------------------
-        template<typename T>
-        ComponentType ComponentManager::getComponentType() const
-        {
-            ComponentName compName = typeid(T).name();
 
-            auto name2TypeMapIter = name2TypeMap.find(compName);
-            if (name2TypeMapIter == name2TypeMap.end())
-            {
-                DEV_ASSERT(false, "getComponentType tried accessing component " \
-                    "type that was not registered yet");
-
-                return invalidComponentTypeFlag;
-            }
-
-            return name2TypeMapIter->second;
-        }
-        // ------------------------------------------------------------------------
-        template<typename T>
-        std::shared_ptr<ComponentArray<T>>
-            ComponentManager::getComponentArray() const
-        {
-            ComponentName compName = typeid(T).name();
-            
-            auto name2ArrayMapIter = name2ArrayMap.find(compName);
-
-            if (name2ArrayMapIter == name2ArrayMap.end())
-            {
-                DEV_ASSERT(false, "getComponentArray tried accessing array " \
-                    "of unregistered component type");
-            
-                return nullptr;
-            }
-
-            return std::static_pointer_cast<ComponentArray<T>>(
-            name2ArrayMapIter->second);
-        }
-    } // namespace engine	
+        return std::static_pointer_cast<ComponentArray<T>>(
+        name2ArrayMapIter->second);
+    }
 } // namespace dragonbreath
 
 #endif // COMPONENT_MANAGER_TPP

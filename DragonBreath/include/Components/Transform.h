@@ -10,27 +10,27 @@
 #define TRANSFORM_H
 
 #include "Vector3.h"
+#include "Quaternion.h"
 
 namespace dragonbreath
 {
-    namespace components
+    /**
+    @brief Stores the position, orientation, and scale
+    */
+    using Transform = struct
     {
         /**
-         * @brief Stores the position, orientation, and scale
-         */
-        using Transform = struct
-        {
-            /**
-             * @brief The x, y, z position of the object
-             */
-            math::Vector3 position {};
-     
-            /**
-             * @brief The x, y, z rotation of the object
-             */
-            math::Vector3 rotation {};
-        };
-    } // namespace components
+        @brief The x, y, z position of the object with respect to environment
+        */
+        Vector3 globalPosition {};
+ 
+        /**
+        @brief The w, x, y, z rotation of the object with respect to environment
+        
+        The rotation described in quaternions and can also give euler angles
+        */
+        Quaternion globalRotation {};
+    };
 } // namespace dragonbreath
 
 #endif // TRANSFORM_H

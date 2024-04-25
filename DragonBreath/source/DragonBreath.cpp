@@ -11,7 +11,7 @@
 #include <iostream>
 #include "DragonBreath.h"
 
-dragonbreath::engine::Commander cmdr;
+dragonbreath::Commander cmdr;
 
 int main(int argc, char** argv)
 {
@@ -25,17 +25,17 @@ int main(int argc, char** argv)
     cmdr.init();
 
     // Make sure to register applicable components and systems
-    cmdr.registerComponent<dragonbreath::components::Transform>();
-    cmdr.registerComponent<dragonbreath::components::RigidBody>();
-    cmdr.registerSystem<dragonbreath::systems::Physics>();
+    cmdr.registerComponent<dragonbreath::Transform>();
+    cmdr.registerComponent<dragonbreath::RigidBody>();
+    cmdr.registerSystem<dragonbreath::Physics>();
 
     // Set system signature bits for applicable components
-    dragonbreath::engine::Signature physicsSignature {};
+    dragonbreath::Signature physicsSignature {};
     physicsSignature.set(
-        cmdr.getComponentType<dragonbreath::components::Transform>());
+        cmdr.getComponentType<dragonbreath::Transform>());
     physicsSignature.set(
-        cmdr.getComponentType<dragonbreath::components::RigidBody>());
-    cmdr.setSystemSignature<dragonbreath::systems::Physics>(physicsSignature);
+        cmdr.getComponentType<dragonbreath::RigidBody>());
+    cmdr.setSystemSignature<dragonbreath::Physics>(physicsSignature);
 
     // TODO
 

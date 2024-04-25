@@ -13,24 +13,21 @@
 
 namespace dragonbreath
 {
-    namespace components
+    /**
+     * @brief Displays physical properties of an object, especially motion
+     */
+    using RigidBody = struct
     {
         /**
-         * @brief Displays physical properties of an object, especially motion
+         * @brief The x, y, z speed
          */
-        using RigidBody = struct
-        {
-            /**
-             * @brief The x, y, z speed
-             */
-            math::Vector3 velocity {};
+        Vector3 velocity {};
 
-            /**
-             * @brief The x, y, z acceleration
-             */
-            math::Vector3 Acceleration {};
-        };
-    } // namespace components
+        /**
+         * @brief The x, y, z acceleration
+         */
+        Vector3 acceleration {};
+    };
 } // namespace dragonbreath
 
 #endif // RIGIDBODY_H

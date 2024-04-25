@@ -13,30 +13,27 @@
 
 namespace dragonbreath
 {
-    namespace systems
+    /**
+     * @brief The physics system class
+     *
+     * Plays entities that have transforms, are affected by gravity, are
+     * designated as rigid bodies, and so on. Will need to initialize the
+     * objects and keep them updated every frame. Inherits from System to
+     * ensure Physics has a set of entities to orchestrate.
+     */
+    class Physics : public System
     {
+    public:
         /**
-         * @brief The physics system class
-         *
-         * Plays entities that have transforms, are affected by gravity, are
-         * designated as rigid bodies, and so on. Will need to initialize the
-         * objects and keep them updated every frame. Inherits from System to
-         * ensure Physics has a set of entities to orchestrate.
+         * @brief Prepares physics system
          */
-        class Physics : public engine::System
-        {
-        public:
-            /**
-             * @brief Prepares physics system
-             */
-            void init();
+        void init();
 
-            /**
-             * @brief Updates the physics by one unit frame
-             */
-            void tick(float deltaTime);
-        };
-    } // namespace systems
+        /**
+         * @brief Updates the physics by one unit frame
+         */
+        void tick(float deltaTime);
+    };
 } // namespace dragonbreath
 
 #endif // namespace dragonbreath

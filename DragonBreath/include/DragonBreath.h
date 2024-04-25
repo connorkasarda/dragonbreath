@@ -26,6 +26,7 @@
 
 // Math
 #include "Vector3.h"
+#include "Quaternion.h"
 
 // Components
 #include "Transform.h"
