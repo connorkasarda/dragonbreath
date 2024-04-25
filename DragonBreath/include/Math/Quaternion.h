@@ -1,8 +1,6 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 
-#include "Vector3.h"
-
 namespace dragonbreath
 {
     /**
@@ -21,11 +19,6 @@ namespace dragonbreath
         */
         Quaternion(float _x, float _y, float _z, float _w);
     private:
-        /**
-
-        */
-        Vector3 eulerAngles {};
-
         /**
 
         */
