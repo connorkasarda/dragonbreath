@@ -13,7 +13,7 @@ namespace dragonbreath
 {
 
     // Commander in main dragonbreath source
-    extern engine::Commander cmdr;
+    extern Commander cmdr;
 
     void Physics::init()
     {
