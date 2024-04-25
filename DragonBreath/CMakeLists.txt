@@ -31,6 +31,7 @@ set(SOURCE_FILES
     source/Engine/SystemManager.cpp
     source/Engine/Commander.cpp
     source/Math/Vector3.cpp
+    source/Math/Quaternion.cpp
     source/DragonBreath.cpp)
     # More to come ...
 

@@ -11,44 +11,41 @@
 
 namespace dragonbreath
 {
-    namespace engine
+    template<typename T>
+    std::shared_ptr<T> SystemManager::registerSystem()
     {
-        template<typename T>
-        std::shared_ptr<T> SystemManager::registerSystem()
+        SystemName systemName = typeid(T).name();
+
+        auto system = std::shared_ptr<T>();
+        auto result = name2SystemMap.insert(
+        std::make_pair(systemName, system));
+        
+        if (!result.second)
         {
-            SystemName systemName = typeid(T).name();
-
-            auto system = std::shared_ptr<T>();
-            auto result = name2SystemMap.insert(
-            std::make_pair(systemName, system));
-            
-            if (!result.second)
-            {
-                DEV_ASSERT(false, "registerSystem attempted registering same " \
-                    "system again");
-            
-                return nullptr;
-            }
-
-            return system;
+            DEV_ASSERT(false, "registerSystem attempted registering same " \
+                "system again");
+        
+            return nullptr;
         }
-        // ------------------------------------------------------------------------
-        template<typename T>
-        void SystemManager::setSystemSignature(Signature signature)
+
+        return system;
+    }
+    // ------------------------------------------------------------------------
+    template<typename T>
+    void SystemManager::setSystemSignature(Signature signature)
+    {
+        SystemName systemName = typeid(T).name();
+            
+        if (name2SystemMap.find(systemName) == name2SystemMap.end())
         {
-            SystemName systemName = typeid(T).name();
-                
-            if (name2SystemMap.find(systemName) == name2SystemMap.end())
-            {
-                DEV_ASSERT(false, "registerSystemSignature attempted setting " \
-                    "signature for unregistered system");
+            DEV_ASSERT(false, "registerSystemSignature attempted setting " \
+                "signature for unregistered system");
 
-                return;
-            }
-
-            name2SignatureMap.insert(std::make_pair(systemName, signature));
+            return;
         }
-    } // namespace engine
+
+        name2SignatureMap.insert(std::make_pair(systemName, signature));
+    }
 } // namespace dragonbreath
 
 #endif // SYSTEM_MANAGER_TPP

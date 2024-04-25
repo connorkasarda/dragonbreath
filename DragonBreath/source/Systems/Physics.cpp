@@ -15,16 +15,13 @@ namespace dragonbreath
     // Commander in main dragonbreath source
     extern engine::Commander cmdr;
 
-    namespace systems
+    void Physics::init()
     {
-        void Physics::init()
-        {
 
-        }
-        // --------------------------------------------------------------------
-        void Physics::tick(float deltaTime)
-        {
+    }
+    // --------------------------------------------------------------------
+    void Physics::tick(float deltaTime)
+    {
 
-        }
-    } // namespace systems
+    }
 } // namespace dragonbreath

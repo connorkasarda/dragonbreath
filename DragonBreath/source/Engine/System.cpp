@@ -11,22 +11,19 @@
 
 namespace dragonbreath
 {
-    namespace engine
+    void System::entityAssigned(Entity entity)
     {
-        void System::entityAssigned(Entity entity)
-        {
-            auto insertResult = entities.insert(entity);
+        auto insertResult = entities.insert(entity);
 
-            DEV_ASSERT(insertResult.second, "entityAssigned tried assigning the " \
-                "same entity again");
-        }
-        // ------------------------------------------------------------------------
-        void System::entityUnassigned(Entity entity)
-        {
-            auto eraseResult = entities.erase(entity);
+        DEV_ASSERT(insertResult.second, "entityAssigned tried assigning the " \
+            "same entity again");
+    }
+    // ------------------------------------------------------------------------
+    void System::entityUnassigned(Entity entity)
+    {
+        auto eraseResult = entities.erase(entity);
 
-            DEV_ASSERT(eraseResult > 0, "entityDestroyed tried removing " \
-                "unassigned entity");
-        }
-    } // namespace engine
+        DEV_ASSERT(eraseResult > 0, "entityDestroyed tried removing " \
+            "unassigned entity");
+    }
 } // namespace dragonbreath

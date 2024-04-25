@@ -18,19 +18,16 @@
 
 namespace dragonbreath
 {
-    namespace engine
-    {
-        /**
-         * @brief The entities component genes
-         *
-         * Each entity will have a set of components that define them. This bitset
-         * will provide the ECS with a way of telling which types of components
-         * the entity has. This implies that each component has an id associated
-         * with it, where the id is the index in the bitset. 0 meaning entity does
-         * not have that component type, 1 meaning it does.
-         */
-        using Signature = std::bitset<maxComponents>;
-    } // namespace engine
+    /**
+     * @brief The entities component genes
+     *
+     * Each entity will have a set of components that define them. This bitset
+     * will provide the ECS with a way of telling which types of components
+     * the entity has. This implies that each component has an id associated
+     * with it, where the id is the index in the bitset. 0 meaning entity does
+     * not have that component type, 1 meaning it does.
+     */
+    using Signature = std::bitset<maxComponents>;
 } // namespace dragonbreath
 
 #endif // SIGNATURE_H
