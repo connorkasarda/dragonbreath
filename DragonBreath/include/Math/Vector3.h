@@ -20,7 +20,7 @@ namespace dragonbreath
         /**
          * @brief Constructor without parameters
          */
-        inline Vector3() : x(0.0), y(0.0), z(0.0) {}
+        Vector3() : x(0.0), y(0.0), z(0.0) {}
 
         /**
          * @brief Constructor with parameters
@@ -29,7 +29,7 @@ namespace dragonbreath
          * @param y Value of y
          * @param z Value of z
          */
-        inline Vector3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
+        Vector3(float _x,float _y,float _z) : x(_x), y(_y), z(_z) {}
 
         /**
         @brief The zero vector3
@@ -37,12 +37,17 @@ namespace dragonbreath
         static const Vector3 zero;
 
         /**
+        @brief The one vector3
+        */
+        static const Vector3 one;
+
+        /**
          * @brief Add 3D vectors
          *
          * @param vector Neighboring Vector3
          * @return Resulting Vector3
          */
-        inline Vector3 operator+(Vector3 const& vector) const
+        Vector3 operator+(Vector3 const& vector) const
         {
             return Vector3(x + vector.x, y + vector.y, z + vector.z);
         }
@@ -53,7 +58,7 @@ namespace dragonbreath
          * @param vector Neighboring Vector3
          * @return Resulting Vector3
          */
-        inline Vector3& operator+=(const Vector3& vector)
+        Vector3& operator+=(const Vector3& vector)
         {
             x += vector.x;
             y += vector.y;
@@ -68,7 +73,7 @@ namespace dragonbreath
          * @param vector Neighboring Vector3
          * @return Resulting Vector3
          */
-        inline Vector3 operator-(const Vector3& vector) const
+        Vector3 operator-(const Vector3& vector) const
         {
             return Vector3(x - vector.x, y - vector.y, z - vector.z);
         }
@@ -79,7 +84,7 @@ namespace dragonbreath
          * @param vector Neighboring Vector3
          * @return Resulting Vector3
          */
-        inline Vector3& operator-=(const Vector3& vector)
+        Vector3& operator-=(const Vector3& vector)
         {
             x -= vector.x;
             y -= vector.y;
@@ -94,7 +99,7 @@ namespace dragonbreath
          * @param vector Neighboring Vector3
          * @return Resulting Vector3
          */
-        inline Vector3 operator*(const Vector3& vector) const
+        Vector3 operator*(const Vector3& vector) const
         {
             return Vector3(x * vector.x, y * vector.y, z * vector.z);
         }
@@ -105,7 +110,7 @@ namespace dragonbreath
          * @param scalar Neighboring scalar
          * @return Resulting Vector3
          */
-        inline Vector3 operator*(float scalar) const
+        Vector3 operator*(float scalar) const
         {
             return Vector3(x * scalar, y * scalar, z * scalar);
         }
@@ -116,7 +121,7 @@ namespace dragonbreath
          * @param vector Neighboring Vector3
          * @return Resulting Vector3
          */
-        inline Vector3& operator*=(const Vector3& vector)
+        Vector3& operator*=(const Vector3& vector)
         {
             x *= vector.x;
             y *= vector.y;
@@ -131,7 +136,7 @@ namespace dragonbreath
          * @param scalar Neighboring scalar
          * @return Resulting Vector3
          */
-        inline Vector3 operator/(float scalar)
+        Vector3 operator/(float scalar)
         {
             return Vector3(x / scalar, y / scalar, z / scalar);
         }
@@ -163,7 +168,7 @@ namespace dragonbreath
          *
          * @return x value
          */
-        inline float getX() const
+        float getX() const
         {
             return x;
         }
@@ -173,7 +178,7 @@ namespace dragonbreath
          *
          * @return y value
          */
-        inline float getY() const
+        float getY() const
         {
             return y;
         }
@@ -183,7 +188,7 @@ namespace dragonbreath
          *
          * @return z value
          */
-        inline float getZ() const
+        float getZ() const
         {
             return z;
         }
@@ -193,7 +198,7 @@ namespace dragonbreath
          *
          * @param x Desired x value
          */
-        inline void setX(float _x)
+        void setX(float _x)
         {
             x = _x;
         }
@@ -203,7 +208,7 @@ namespace dragonbreath
          *
          * @param y Desired y value
          */
-        inline void setY(float _y)
+        void setY(float _y)
         {
             y = _y;
         }
@@ -213,7 +218,7 @@ namespace dragonbreath
          *
          * @param z Desired z value
          */
-        inline void setZ(float _z)
+        void setZ(float _z)
         {
             z = _z;
         }
