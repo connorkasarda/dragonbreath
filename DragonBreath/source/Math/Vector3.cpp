@@ -12,5 +12,6 @@ namespace dragonbreath
 {
     const Vector3 Vector3::zero(0.0, 0.0, 0.0);
     // ------------------------------------------------------------------------
+    const Vector3 Vector3::one(1.0, 1.0, 1.0);
     // more to come ...
 } // namespace dragonbreath
