@@ -45,14 +45,44 @@ namespace dragonbreath
         return Quaternion(w, x, y, z);
     }
     // ------------------------------------------------------------------------
+    void Quaternion::normalize()
+    {
+        // Find the length of the quaternion
+        float magnitude = std::sqrt(w * w + x * x + y * y + z * z);
+
+        // Divide the quaternion by the magnitude of the quaternion
+        w /= magnitude;
+        x /= magnitude;
+        y /= magnitude;
+        z /= magnitude;
+    }
+    // ------------------------------------------------------------------------
+    Quaternion Quaternion::toNormalized() const
+    {
+        // Find the length of the quaternion
+        float magnitude = std::sqrt(w * w + x * x + y * y + z * z);
+
+        // Return quaternion by value
+        return Quaternion(
+            w / magnitude,
+            x / magnitude,
+            y / magnitude,
+            z / magnitude);
+    }
+    // ------------------------------------------------------------------------
     Vector3 Quaternion::toEulerAngles() const
     {
-        // TODO Normalize the quaternion components first!
+        // Normalize the quaternion components first to avoid math errors
+        Quaternion normQ = this->toNormalized(); 
 
         // Calculate roll, pitch, and yaw
-        float roll = std::atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y));
-        float pitch = std::asin(2 * (w * y - x * z));
-        float yaw = std::atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z));
+        float roll = std::atan2(
+            2 * (normQ.w * normQ.x + normQ.y * normQ.z),
+            1 - 2 * (normQ.x * normQ.x + normQ.y * normQ.y));
+        float pitch = std::asin(2 * (normQ.w * normQ.y - normQ.x * normQ.z));
+        float yaw = std::atan2(
+            2 * (normQ.w * normQ.z + normQ.x * normQ.y),
+            1 - 2 * (normQ.y * normQ.y + normQ.z * normQ.z));
 
         // Return euler angles
         return Vector3(roll, pitch, yaw);
