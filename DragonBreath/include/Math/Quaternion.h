@@ -31,12 +31,12 @@ namespace dragonbreath
         /**
         @brief Constructor with no arguments passed
         */
-        Quaternion() : w(0.0), x(0.0), y(0.0), z(0.0) {}
+        inline Quaternion() : w(0.0), x(0.0), y(0.0), z(0.0) {}
     
         /**
         @brief Constructor with w, x, y, z arguments passed
         */
-        Quaternion(float _w, float _x, float _y, float _z)
+        inline Quaternion(float _w, float _x, float _y, float _z)
             : w(_w), x(_x), y(_y), z(_z) {}
 
         /**
@@ -135,7 +135,13 @@ namespace dragonbreath
         @param y_ Y component of the quaternion
         @param z_ Z component of the quaternion
         */
-        void set(float _w, float _x, float _y, float _z);
+        inline void set(float _w, float _x, float _y, float _z)
+        {
+            w = _w;
+            x = _x;
+            y = _y;
+            z = _z;
+        }
 
         /**
         @brief Produces a string representation of the quaternion's components.

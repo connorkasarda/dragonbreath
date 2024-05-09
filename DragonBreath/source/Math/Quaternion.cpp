@@ -88,14 +88,6 @@ namespace dragonbreath
         return Vector3(roll, pitch, yaw);
     }
     // ------------------------------------------------------------------------
-    void Quaternion::set(float _w, float _x, float _y, float _z)
-    {
-        w = _w;
-        x = _x;
-        y = _y;
-        z = _z;
-    }
-    // ------------------------------------------------------------------------
     std::string Quaternion::toString() const
     {
         std::ostringstream oss;
