@@ -45,6 +45,15 @@ namespace dragonbreath
         return Quaternion(w, x, y, z);
     }
     // ------------------------------------------------------------------------
+    Quaternion Quaternion::operator*(const Quaternion& rhs) const
+    {
+        // After multiplying out and using table, this is the result
+        return Quaternion(w * rhs.w - x * rhs.x - y * rhs.y - z * rhs.z,
+                          w * rhs.x + x * rhs.w + y * rhs.z - z * rhs.y,
+                          w * rhs.y - x * rhs.z + y * rhs.w + z * rhs.x,
+                          w * rhs.z + x * rhs.y - y * rhs.x + z * rhs.w);
+    }
+    // ------------------------------------------------------------------------
     void Quaternion::normalize()
     {
         // Find the length of the quaternion
@@ -86,14 +95,6 @@ namespace dragonbreath
 
         // Return euler angles
         return Vector3(roll, pitch, yaw);
-    }
-    // ------------------------------------------------------------------------
-    void Quaternion::set(float _w, float _x, float _y, float _z)
-    {
-        w = _w;
-        x = _x;
-        y = _y;
-        z = _z;
     }
     // ------------------------------------------------------------------------
     std::string Quaternion::toString() const
