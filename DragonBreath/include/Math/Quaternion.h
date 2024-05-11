@@ -90,6 +90,30 @@ namespace dragonbreath
         @return the quaternion rotation representation from roll, pitch, yaw
         */
         static Quaternion fromRollPitchYaw(float roll, float pitch, float yaw);
+       
+        /**
+        @brief Performs quaternion multiplication.
+
+        @param rhs The RHS quaternion
+
+        @return Product of quaternion multiplication
+        */
+        Quaternion operator*(const Quaternion& rhs) const;
+ 
+        /**
+        @brief Checks equality between 2 quaternions.
+
+        @param rhs The RHS quaternion
+
+        @return Result of equality check
+        */
+        inline bool operator==(const Quaternion& rhs) const
+        {
+            return w == rhs.w &&
+                   x == rhs.x &&
+                   y == rhs.y &&
+                   z == rhs.z;
+        }        
 
         /**
         @brief Converts the components of this quaternion such that this
